@@ -6,7 +6,7 @@ function getIncome(req, res) {
     try {
         const data = (0, incomeModel_1.findIncomes)();
         console.log(data);
-        res.send(data);
+        res.send(JSON.stringify(data));
     }
     catch (err) {
         console.log(err);
