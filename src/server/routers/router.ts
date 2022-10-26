@@ -1,12 +1,13 @@
 import {Router} from "express"
 // import {getIncome} from "../controllers/incomeController"
-import {getIncome, getIncomeSelect} from "../models/incomeModel"
-import {getExpenseSelect} from "../models/expenseModel"
+// import {getIncome, getIncomeSelect, getExpenseSelect} from "../models/incomeModel"
+import { getIncomeByMonth, getExpenseByMonth} from "../models/db"
 
 const router = Router()
 
-router.get("/api/report/income", getIncomeSelect)
+router.get("/report/income", getIncomeByMonth)
 
-router.get("/api/report/expense", getExpenseSelect)
+router.get("/report/expense", getExpenseByMonth)
+
 
 export {router}

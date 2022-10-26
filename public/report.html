@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<link rel="stylesheet" href="report.css">
+<body> 
+    <header></header>
+    <div id="monthDiv">
+        <span>2022-10</span>
+    </div>
+    <main>
+
+        <div class="report-box block"> 
+            <h2 class="titular">소비 계산서</h2>
+            <ul class="income-report">
+                <!-- <li>
+                    <div class="report-box-tab">식비<div class="report-box-amount">250,000원</div></div>                            
+                </li>
+                <li>
+                    <div class="report-box-tab">주거비<div class="report-box-amount">250,000원</div></div>                           
+                </li>
+                <li>
+                    <div class="report-box-tab">의류미용<div class="report-box-amount">250,000원</div></div>                         
+                </li>
+                <li>
+                    <div class="report-box-tab">문화생활<div class="report-box-amount">250,000원</div></div>
+                </li>
+                <li>
+                    <div class="report-box-tab">경조사<div class="report-box-amount">250,000원</div></div>  
+                </li>                        
+                <li>
+                    <div class="report-box-tab">기타소비<div class="report-box-amount">250,000원</div></div> 
+                </li>
+                <li>
+                    <div class="report-box-tab">총계<div class="report-box-amount">250,000원</div></div>
+                </li>         -->
+            </ul>
+        </div>
+        <div class="report-box block">
+            <h2 class="titular">소득 계산서</h2>
+            <ul class="expense-report">
+                <!-- <li>
+                    <div class="report-box-tab">월급<div class="report-box-amount">250,000원</div></div>                           
+                </li>
+                <li>
+                    <div class="report-box-tab">용돈<div class="report-box-amount">250,000원</div></div>                          
+                </li>
+                <li>
+                    <div class="report-box-tab">기타소득<div class="report-box-amount">250,000원</div></div>                          
+                </li>
+                <li>
+                    <div class="report-box-tab">총계<div class="report-box-amount">250,000원</div></div>                          
+                </li> -->
+                
+            </ul>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+
+</body>
+<script src = "report.js">
+
+</script>
+<!-- <script>
+"use strict";
+const incomeMenu =  document.querySelector(".income-menu")
+const expenseMenu =  document.querySelector(".expense-menu")
+
+
+
+const getReport = async()=>{
+    const response = await fetch("api/report/income")
+    console.log(response)
+    const datas = await response.json()
+    console.log(datas)
+    datas.forEach((data) => {
+        const listEl = document.createElement("li");
+        const titleDivEl = document.createElement("div");
+        const amountDivEl = document.createElement("div");
+
+        titleDivEl.textContent = data.options
+        titleDivEl.classList.add("report-box-tab") 
+        // report-box block
+        amountDivEl.textContent = `${data.optionAmount}원`
+        amountDivEl.classList.add("report-box-amount") 
+
+        titleDivEl.append(amountDivEl)
+        listEl.append(titleDivEl)
+
+
+        incomeMenu.append(listEl)
+    });
+
+
+    const response = await fetch("api/report/expense")
+    console.log(response)
+    const datas = await response.json()
+    console.log(datas)
+    datas.forEach((data) => {
+        const listEl = document.createElement("li");
+        const titleDivEl = document.createElement("div");
+        const amountDivEl = document.createElement("div");
+
+        titleDivEl.textContent = data.options
+        titleDivEl.classList.add("report-box-tab") 
+        // report-box block
+        amountDivEl.textContent = `${data.optionAmount}원`
+        amountDivEl.classList.add("report-box-amount") 
+
+        titleDivEl.append(amountDivEl)
+        listEl.append(titleDivEl)
+
+
+        expenseMenu.append(listEl)
+    });
+}
+
+getReport()
+</script> -->
+</html>

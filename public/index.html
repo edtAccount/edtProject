@@ -3,124 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
+    <title>Document</title>
 </head>
-<link rel="stylesheet" href="index.css">
-<body> 
-    <header></header>
-    <div id="monthDiv">
-        <span>2022-10</span>
-    </div>
-    <main>
-
-        <div class="menu-box block"> 
-            <h2 class="titular">소비 계산서</h2>
-            <ul class="income-menu">
-                <!-- <li>
-                    <div class="menu-box-tab">식비<div class="menu-box-number">250,000원</div></div>                            
-                </li>
-                <li>
-                    <div class="menu-box-tab">주거비<div class="menu-box-number">250,000원</div></div>                           
-                </li>
-                <li>
-                    <div class="menu-box-tab">의류미용<div class="menu-box-number">250,000원</div></div>                         
-                </li>
-                <li>
-                    <div class="menu-box-tab">문화생활<div class="menu-box-number">250,000원</div></div>
-                </li>
-                <li>
-                    <div class="menu-box-tab">경조사<div class="menu-box-number">250,000원</div></div>  
-                </li>                        
-                <li>
-                    <div class="menu-box-tab">기타소비<div class="menu-box-number">250,000원</div></div> 
-                </li>
-                <li>
-                    <div class="menu-box-tab">총계<div class="menu-box-number">250,000원</div></div>
-                </li>         -->
-            </ul>
-        </div>
-        <div class="menu-box block">
-            <h2 class="titular">소득 계산서</h2>
-            <ul class="expense-menu">
-                <li>
-                    <div class="menu-box-tab">월급<div class="menu-box-number">250,000원</div></div>                           
-                </li>
-                <li>
-                    <div class="menu-box-tab">용돈<div class="menu-box-number">250,000원</div></div>                          
-                </li>
-                <li>
-                    <div class="menu-box-tab">기타소득<div class="menu-box-number">250,000원</div></div>                          
-                </li>
-                <li>
-                    <div class="menu-box-tab">총계<div class="menu-box-number">250,000원</div></div>                          
-                </li>
-                
-            </ul>
-        </div>
-
-    </main>
-
-    <footer></footer>
-
-
+<body>
+    <a href="report.html">월별손익계산서 이동</a>
+    <button id="getdata">getdata</button>
+   
+    <ul id = "ulData"></ul>
+    
 </body>
-<script src = "index.js">
-
-</script>
-<!-- <script>
-"use strict";
-const incomeMenu =  document.querySelector(".income-menu")
-const expenseMenu =  document.querySelector(".expense-menu")
-
-
-
-const getReport = async()=>{
-    const response = await fetch("api/report/income")
-    console.log(response)
-    const datas = await response.json()
-    console.log(datas)
-    datas.forEach((data) => {
-        const listEl = document.createElement("li");
-        const titleDivEl = document.createElement("div");
-        const amountDivEl = document.createElement("div");
-
-        titleDivEl.textContent = data.options
-        titleDivEl.classList.add("menu-box-tab") 
-        // menu-box block
-        amountDivEl.textContent = `${data.optionAmount}원`
-        amountDivEl.classList.add("menu-box-number") 
-
-        titleDivEl.append(amountDivEl)
-        listEl.append(titleDivEl)
-
-
-        incomeMenu.append(listEl)
-    });
-
-
-    const response = await fetch("api/report/expense")
-    console.log(response)
-    const datas = await response.json()
-    console.log(datas)
-    datas.forEach((data) => {
-        const listEl = document.createElement("li");
-        const titleDivEl = document.createElement("div");
-        const amountDivEl = document.createElement("div");
-
-        titleDivEl.textContent = data.options
-        titleDivEl.classList.add("menu-box-tab") 
-        // menu-box block
-        amountDivEl.textContent = `${data.optionAmount}원`
-        amountDivEl.classList.add("menu-box-number") 
-
-        titleDivEl.append(amountDivEl)
-        listEl.append(titleDivEl)
-
-
-        expenseMenu.append(listEl)
-    });
-}
-
-getReport()
-</script> -->
+<script src = index.js></script>
 </html>

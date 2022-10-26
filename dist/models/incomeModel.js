@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getIncomeSelect = exports.getIncome = exports.findIncomes = void 0;
+exports.findIncomes = void 0;
 const db_1 = require("./db");
 function findIncomes() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,26 +27,11 @@ function findIncomes() {
     });
 }
 exports.findIncomes = findIncomes;
-function getIncome(req, res) {
-    db_1.connection.query('select * from income_tbl', (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        res.send(rows);
-    });
-}
-exports.getIncome = getIncome;
-function getIncomeSelect(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        db_1.connection.query(`select options, sum(amount) as "optionAmount"
-        from income_tbl
-        where DATE_FORMAT(insert_date, "%m") = "10"
-        group by options`, (err, rows) => {
-            if (err) {
-                throw err;
-            }
-            res.send(rows);
-        });
-    });
-}
-exports.getIncomeSelect = getIncomeSelect;
+// export function getIncome(req, res) {
+//     connection.query('select * from income_tbl', (err, rows)=>{
+//         if(err){
+//             throw err;
+//         }
+//         res.send(rows)
+//     })
+// }

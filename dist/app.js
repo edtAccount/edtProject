@@ -8,7 +8,8 @@ const router_1 = require("./routers/router");
 const app = (0, express_1.default)();
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
-app.use(router_1.router);
+//라우터 등록
+app.use("/api", router_1.router);
 app.listen(3000, () => {
     console.log("listening to 3000");
 });

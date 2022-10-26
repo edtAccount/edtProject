@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
 // import {getIncome} from "../controllers/incomeController"
-const incomeModel_1 = require("../models/incomeModel");
-const expenseModel_1 = require("../models/expenseModel");
+// import {getIncome, getIncomeSelect, getExpenseSelect} from "../models/incomeModel"
+const db_1 = require("../models/db");
 const router = (0, express_1.Router)();
 exports.router = router;
-router.get("/api/report/income", incomeModel_1.getIncomeSelect);
-router.get("/api/report/expense", expenseModel_1.getExpenseSelect);
+router.get("/report/income", db_1.getIncomeByMonth);
+router.get("/report/expense", db_1.getExpenseByMonth);
