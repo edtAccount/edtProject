@@ -8,3 +8,5 @@ const mysql_1 = __importDefault(require("mysql"));
 const config_1 = require("../config/config");
 //커넥트 옵션 
 exports.connection = mysql_1.default.createConnection(config_1.connetOptions);
+exports.connection.connect();
+exports.connection.end();

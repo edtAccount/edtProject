@@ -1,11 +1,11 @@
 import {findIncomes} from "../models/incomeModel"
 import {Request, Response} from "express"
 
-export function getIncome(req:Request, res:Response) {
+export async function getIncome(req:Request, res:Response) {
     try{
-        const data = findIncomes()
+        const data = await findIncomes()
         console.log(data)
-        res.send(data)
+        await res.send(data)
     }catch(err){
         console.log(err)
     }

@@ -2,8 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
-const incomeController_1 = require("../controllers/incomeController");
-// import {getIncome} from "../models/incomeModel"
+// import {getIncome} from "../controllers/incomeController"
+const incomeModel_1 = require("../models/incomeModel");
+const expenseModel_1 = require("../models/expenseModel");
 const router = (0, express_1.Router)();
 exports.router = router;
-router.get("/api/report", incomeController_1.getIncome);
+router.get("/api/report/income", incomeModel_1.getIncomeSelect);
+router.get("/api/report/expense", expenseModel_1.getExpenseSelect);

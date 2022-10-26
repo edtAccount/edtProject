@@ -345,7 +345,11 @@ main{
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.menu-box-menu li {
+.income-menu li {
+  height: 60px;
+  position: relative;
+}
+.expense-menu li {
   height: 60px;
   position: relative;
 }
