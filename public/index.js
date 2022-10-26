@@ -10,15 +10,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const getdataBtn = document.getElementById("getdata");
 const ulData = document.getElementById("ulData");
-getdataBtn.onclick = () => {
-    getReport();
-};
+getdataBtn.onclick = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield getReport();
+});
 const getReport = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch("api/report");
+    console.log(response);
     const datas = yield response.json();
+    console.log(datas);
     datas.forEach((data) => {
         const itemEl = document.createElement("li");
         itemEl.textContent = `${data.options} + ${data.content}`;
+        console.log(data);
         ulData.append(itemEl);
     });
     return datas;
