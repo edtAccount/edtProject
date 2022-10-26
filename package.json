@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:s": "tsc -p ./src/server/tsconfig.json",
+    "build:c": "tsc -p ./src/client/tsconfig.json",
+    "start" : "node ./dist/app.js"
   },
   "author": "",
   "license": "ISC",
