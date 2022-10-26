@@ -1,10 +1,17 @@
+<<<<<<< Updated upstream
 import "dotenv/config";
 import express from 'express';
 export const app = express();
+=======
+import express, {Request, Response} from "express"
+import {router} from "./routers/router"
+const app = express();
+>>>>>>> Stashed changes
 
 app.use(express.static("public"));
 app.use(express.json())
 
+<<<<<<< Updated upstream
 app.listen(3000, ()=>{
     console.log("listening to 3000")
 })
@@ -34,5 +41,8 @@ app.listen(3000, ()=>{
 //         response.send(rows)
 //     })
 // })
+=======
+app.use(router)
+>>>>>>> Stashed changes
 
 
