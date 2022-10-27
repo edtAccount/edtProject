@@ -1,12 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.connetOptions = void 0;
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-exports.connetOptions = {
+import dotenv from "dotenv";
+dotenv.config();
+
+
+export const connetOptions = {
     // host: '172.29.12.155',
     // port: 3306,
     // user: 'root',
@@ -21,4 +17,4 @@ exports.connetOptions = {
     database: process.env.DB_NAME,
     connectTimeout: 5000,
     connectionLimit: 30,
-};
+}
