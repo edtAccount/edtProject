@@ -8,18 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const getdataBtn = document.getElementById("getdata");
-const ulData = document.getElementById("ulData");
-getdataBtn.onclick = () => {
-    getReport();
-};
-const getReport = () => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield fetch("api/report");
-    const datas = yield response.json();
-    datas.forEach((data) => {
-        const itemEl = document.createElement("li");
-        itemEl.textContent = `${data.options} + ${data.content}`;
-        ulData.append(itemEl);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getExpenseSelect = void 0;
+const db_1 = require("./db");
+function getExpenseSelect(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        db_1.connection.query(`select options, sum(amount) as "optionAmount"
+        from expense_tbl
+        where DATE_FORMAT(insert_date, "%m") = "10"
+        group by options`, (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            res.send(rows);
+        });
     });
-    return datas;
-});
+}
+exports.getExpenseSelect = getExpenseSelect;

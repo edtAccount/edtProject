@@ -1,25 +1,25 @@
-import { connection } from "./db";
+import { pool } from "./db";
 
-export function selectUserName(userName:string){
-    connection.query(
-        `SELECT * FROM USER_TBL WHERE userName = ${userName}`
-    , (err, rows)=>{
-        if(err){
-            throw err;
+
+export async function selectUser(username:string, userpwd:string){
+    try{
+        const connection = await pool.getConnection(); 
+        try{
+            const [rows] = await connection.query(
+                            `SELECT * FROM USER_TBL WHERE userId = (?) AND userpwd = (?)`, 
+                            [username, userpwd]
+                        )
+            connection.release();
+                  
+            return rows
+        }catch(err){
+            console.log("Query err");
+            connection.release();
+            return false;
         }
-        if(rows) return true;
-        return false;
-    })
+    }catch(err){
+        console.log("getConnection err");
+        return false
+    }
 }
 
-export function selectUserPwd(userPwd:string){
-    connection.query(
-        `SELECT * FROM USER_TBL WHERE userPwd = ${userPwd}`
-    , (err, rows)=>{
-        if(err){
-            throw err;
-        }
-        if(rows) return true;
-        return false;
-    })
-}

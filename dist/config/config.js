@@ -1,6 +1,7 @@
-
-
-export const connetOptions = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.connetOptions = void 0;
+exports.connetOptions = {
     host: '172.29.12.155',
     port: 3306,
     user: 'root',
@@ -8,4 +9,4 @@ export const connetOptions = {
     database: 'exercise',
     connectTimeout: 5000,
     connectionLimit: 30,
-}
+};
