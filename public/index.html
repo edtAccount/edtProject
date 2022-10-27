@@ -305,6 +305,14 @@
 
             box-shadow: 0 0 5px 1px gray
         }
+        .modal-container{
+            visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(253, 246, 183, 0.87);
+        }
 
     </style>
 </head>
@@ -324,7 +332,7 @@
                     <p>내역</p>
                 </dir>
                 <div id="report-menu-container" class="menu">
-                    <p>손익계산서</p>
+                    <a href="/report"><p>손익계산서</p></a>
                 </div>
             </div>
         </div>
@@ -413,16 +421,48 @@
                 </table>
             </div>
             <div id="plus-menu-container">
-                <div id="plus-menu-btn"></div>
+                <div id="plus-menu-btn" value="false"></div>
             </div>
         </div>
         <!-- ------------------------------------------- -->
         <!-- ------------------------------------------- -->
-        <!-- <div id="right-area">
-            
-        </div> -->
+        <div id="right-area">
+            <div class="modal-container" id="modal">
+                <div class="modal">
+                    <button class="close-btn" id="close"><i class="fas fa-times"></i></button>
+                    <div class="modal-header">
+                        <h3>Sign Up</h3>
+                    </div>
+                    <div class="modal-content">
+                        <p>Register with us to get offers, support and more</p>
+                        <form class="modal-form">
+                            <div>
+                                <label for="name">Name</label>
+                                <input type="text" id="name" placeholder="Enter Name" class="form-input">
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Enter Email" class="form-input">
+                            </div>
+                            <div>
+                                <label for="password">Password</label>
+                                <input type="password" id="Enter Password" placeholder="Enter Password" class="form-input">
+                            </div>
+                            <div>
+                                <label for="password2">Confirm Password</label>
+                                <input type="password" id="password2" placeholder="Confirm Password" class="form-input">
+                            </div>
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
         <!-- ------------------------------------------- -->
         <!-- ------------------------------------------- -->
     </div>
 </body>
+<script src="index.js"></script>
 </html>

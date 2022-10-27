@@ -28,6 +28,7 @@ const express_1 = require("express");
 const reportController = __importStar(require("../controllers/reportController"));
 const reportRouter = (0, express_1.Router)();
 exports.reportRouter = reportRouter;
+// reportRouter.use(loginRequired)
 //월별 카테고리별 소득
 reportRouter.get("/report/income/:month", reportController.getIncomeByMonth);
 //월별 소득 총계

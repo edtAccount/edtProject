@@ -1,7 +1,10 @@
 import {Router} from "express"
 import * as reportController from "../controllers/reportController"
+import {loginRequired} from "../middleware/loginRequired"
 
 const reportRouter = Router()
+
+// reportRouter.use(loginRequired)
 
 //월별 카테고리별 소득
 reportRouter.get("/report/income/:month", reportController.getIncomeByMonth)
