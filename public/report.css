@@ -1,53 +1,31 @@
-/* 
 
+header{
+
+  margin: 0 auto;
+}
 main{
-    font-family: Verdana, Geneva, Arial, sans-serif;
+  font-family: Verdana, Geneva, Arial, sans-serif;
   width : 100%;
   height : 100%;
-}
+
+}/*
 #totalDiv{
   width: 100%;
   display: flex;
 }*/
 
 #monthDiv{
-  color: aliceblue;
-  width: 30%;
+  margin: 0 auto;
   height: 50px;
-  margin: auto;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#monthDiv > span{
+  color: aliceblue;
   text-align: center;
   font-size: 30px;
-  margin-top: 50px;
   font-weight: bold;
-  text-decoration: underline;
-
-}
-
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
-@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
-/* entypo */
-[class*="entypo-"]:before {
-  font-family: "entypo", sans-serif;
-}
-/* fontawesome */
-[class*="fontawesome-"]:before {
-  font-family: "FontAwesome", sans-serif;
-}
-/* zocial */
-[class*="zocial-"]:before {
-  font-family: "zocial", sans-serif;
-}
-@font-face {
-  font-family: "icomoon";
-  src: url("https://jlalovi-cv.herokuapp.com/font/icomoon.eot");
-  src: url("https://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix")
-      format("embedded-opentype"),
-    url("https://jlalovi-cv.herokuapp.com/font/icomoon.ttf") format("truetype"),
-    url("https://jlalovi-cv.herokuapp.com/font/icomoon.woff") format("woff"),
-    url("https://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
 }
 
 
@@ -96,8 +74,7 @@ main{
   margin: auto;
   display: grid;
   font-family: Verdana, Geneva, Arial, sans-serif;
-  /* place-items: center; */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .block {
@@ -109,7 +86,8 @@ main{
 .report-box {
   height: auto;
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 30px;
+  margin-top: 20px;
 }
 .report-box .titular {
   background: #11a8ab;
@@ -155,3 +133,52 @@ main{
   background: #e64c65;
 }
 
+
+/*캘린더*/
+body {
+  background-color: #333;
+  color: #aaa;
+  font-family: 'Josefin Sans';
+}
+
+.calendar {
+  width: 350px;
+  margin: 50px auto 0;
+}
+
+.calendar__month {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+}
+
+.cal-month__previous, .cal-month__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+}
+
+.cal-month__next {
+  right: 0;
+}
+
+.cal-month__current {
+  text-align: center;
+  color: #e1e1e1;
+}
+
+/* 
+&:hover {
+  background-color: #42A5F5;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.75);
+  border-radius: 50%;
+  font-weight: 800;
+  color: #111;
+} */
