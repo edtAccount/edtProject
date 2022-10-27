@@ -1,28 +1,31 @@
+const fullname = document.querySelector("#fullname");
 const username = document.querySelector("#username");
 const userpwd = document.querySelector("#userpwd");
-const loginBtn = document.querySelector("#loginBtn");
+const signupBtn = document.querySelector("#signupBtn");
 
-loginBtn.addEventListener("click", clickLoginBtnHandler);
+signupBtn.addEventListener("click", clickSignBtnHandler);
 
-async function clickLoginBtnHandler(){
-    if(!username.value || !userpwd.value){
+function clickSignBtnHandler(){
+    if(!fullname.value || !username.value || !userpwd.value){
         alert("입력란을 채워주세요.");
         return;
     }
 
-    sendRequestForLogin();
+    sendRequestForSignUp();
 
 }
 
-async function sendRequestForLogin(){
+async function sendRequestForSignUp(){
+    console.log(fullname.value);
     console.log(username.value);
     console.log(userpwd.value)
-    const response = await fetch("/login", {
+    const response = await fetch("/signup", {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            fullname: fullname.value,
             username:  username.value,
             userpwd: userpwd.value,
         })

@@ -2,6 +2,7 @@ import express, {Request, Response} from "express";
 
 // import {router} from "./routers/router"
 import {loginRouter} from "./routers/loginRouter"
+import { signupRouter } from "./routers/signupRouter";
 const app = express();
 
 app.use(express.static("public"));
@@ -9,6 +10,7 @@ app.use(express.json())
 
 // app.use(router)
 app.use(loginRouter);
+app.use(signupRouter);
 
 
 app.listen(3000, ()=>{

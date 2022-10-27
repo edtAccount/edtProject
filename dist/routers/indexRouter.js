@@ -28,5 +28,5 @@ const express_1 = require("express");
 const loginController = __importStar(require("../controllers/loginController"));
 const loginRouter = (0, express_1.Router)();
 exports.loginRouter = loginRouter;
+// loginRouter.get("/login", )
 loginRouter.post("/login", loginController.login);
-loginRouter.get("/login", loginController.validateLoginPage);

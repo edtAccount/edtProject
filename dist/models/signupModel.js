@@ -9,19 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getExpenseSelect = void 0;
+exports.insertUser = void 0;
 const db_1 = require("./db");
-function getExpenseSelect(req, res) {
+function insertUser(userData) {
     return __awaiter(this, void 0, void 0, function* () {
-        db_1.connection.query(`select options, sum(amount) as "optionAmount"
-        from expense_tbl
-        where DATE_FORMAT(insert_date, "%m") = "10"
-        group by options`, (err, rows) => {
-            if (err) {
-                throw err;
+        try {
+            const connection = yield db_1.pool.getConnection();
+            try {
+                const [rows] = yield connection.query(`INSERT user_tbl (name, userid, userpwd) VALUES (?, ?, ?)`, [userData.fullname, userData.username, userData.userpwd]);
+                connection.release();
+                return rows;
             }
-            res.send(rows);
-        });
+            catch (err) {
+                console.log("Query err");
+                connection.release();
+                return false;
+            }
+        }
+        catch (err) {
+            console.log("getConnection err");
+            return false;
+        }
     });
 }
-exports.getExpenseSelect = getExpenseSelect;
+exports.insertUser = insertUser;

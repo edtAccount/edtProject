@@ -9,18 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getIncome = void 0;
-const incomeModel_1 = require("../models/incomeModel");
-function getIncome(req, res) {
+exports.signup = void 0;
+const signupModel_1 = require("../models/signupModel");
+function signup(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const data = yield (0, incomeModel_1.findIncomes)();
-            console.log(data);
-            yield res.send(data);
+        let result = yield (0, signupModel_1.insertUser)(request.body);
+        console.log(result.affectedRows);
+        if (!result.affectedRows) {
+            response.writeHead(302, {
+                "Content-Type": "text/html; charset=UTF-8;",
+                'Location': 'http://localhost:3000/sign.html'
+            });
+            response.end();
         }
-        catch (err) {
-            console.log(err);
+        else {
+            response.writeHead(302, {
+                "Content-Type": "text/html; charset=UTF-8;",
+                'Location': 'http://localhost:3000/login.html'
+            });
+            response.end();
         }
+        console.log(result);
     });
 }
-exports.getIncome = getIncome;
+exports.signup = signup;

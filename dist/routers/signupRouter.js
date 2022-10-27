@@ -23,10 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginRouter = void 0;
+exports.signupRouter = void 0;
 const express_1 = require("express");
-const loginController = __importStar(require("../controllers/loginController"));
-const loginRouter = (0, express_1.Router)();
-exports.loginRouter = loginRouter;
-loginRouter.post("/login", loginController.login);
-loginRouter.get("/login", loginController.validateLoginPage);
+const signupController = __importStar(require("../controllers/signupController"));
+const signupRouter = (0, express_1.Router)();
+exports.signupRouter = signupRouter;
+signupRouter.post("/signup", signupController.signup);

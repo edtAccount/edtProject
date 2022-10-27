@@ -1,19 +1,13 @@
 import { Request, Response } from "express";
 import { selectUser} from "../models/loginModel";
+import fs from "fs";
+import dotenv from "dotenv";
 
-// const result = {
-//     post_result : async (request, response, )
-// }
+dotenv.config();
+
 export async function login(request:Request, response:Response){
-    let result;
-    console.log(request.body?.username)
-    console.log(request.body?.userpwd)
-    // 쿠키에 아이디 값이 저장되어있는지 확인 
-    // checkCookie(request, response);
-    // 입력한 아이디, 비밀번호 값 받기
-    // 데이터에 일치하는 아이디가 있는지 알아보기 위해 Model 의 function 을 호출
-    // 일치하지 않는다면 경고창 띄우고 종료 
-    result = await selectUser(request.body?.username, request.body?.userpwd);
+
+    let result = await selectUser(request.body?.username, request.body?.userpwd);
     console.log(result)
     if(!result.length){
         response.writeHead(302,{
@@ -34,18 +28,28 @@ export async function login(request:Request, response:Response){
 
 }
 
-function checkCookie(request:Request, response:Response){
+export function validateLoginPage(request:Request, response:Response){
+
     const cookies = parseCookies(request.headers.cookie);
 
-    if(cookies.username == null){
+    if(cookies.username != null){
+
         response.writeHead(302,{
             "Content-Type" : "text/html; charset=UTF-8;",
-            'Location' : 'http://localhost:3000/index.html'
+            'Location' : 'http://localhost:3000/'
         })
         response.end();
-        return 
+        return;
+    }else{
+        let filePath = getFilePath(request);
+
+        response.writeHead(200, {
+            "Content-Type" : "text/html; charset=UTF-8"
+        });
+        response.end(fs.readFileSync(filePath))
     }
 }
+
 
 const parseCookies = ( cookie = '' ) => {
     console.log("cookie : ",cookie);
@@ -57,4 +61,54 @@ const parseCookies = ( cookie = '' ) => {
             acc[k.trim()] = decodeURIComponent(v);
             return acc;
         }, {});
+}
+
+function getFilePath(request:Request){
+    let filePath;
+
+    if(request.url == "/login") filePath = process.env.PUBLIC_PATH;
+    filePath = path.join(process.env.PRIVATE_PATH, request.url)
+
+    //확장자 얻기
+    let extname = path.extname(filePath);
+
+    if(!extname && extname != ".js"){
+        const checkPaths = [`${filePath}.html`, path.join(filePath, "index.html")];
+        
+        for (const checkPath of checkPaths){
+            if(fs.existsSync(checkPath)){
+                filePath = checkPath;
+                break;
+            }
+        }
+
+    }else if(extname == ".js"){
+        let checkPath = `${filePath}`;
+        if(fs.existsSync(checkPath)){
+            filePath = checkPath;
+        }
+    }
+    
+    if(!fs.existsSync(filePath)){
+        return null;
+    }
+    
+    return filePath;
+}
+function getLocation(request){
+
+}
+
+function getContentType(request) {
+
+    let extname = path.extname(filePath);
+
+    switch (extname) {
+      case ".html":
+        return "text/html; charset=utf-8";
+      case ".js":
+        return "text/javascript; charset=utf-8";
+      default:
+        break;
+    }
 }
