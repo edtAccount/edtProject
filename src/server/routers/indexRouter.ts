@@ -1,9 +1,11 @@
 import {Router} from "express"
-import * as loginController from "../controllers/loginController";
+import * as getController from "../controllers/getController";
+import { privatePageValidate } from "../middleware/validations";
 
-const loginRouter = Router();
+const indexRouter = Router();
 
-// loginRouter.get("/login", )
-loginRouter.post("/login", loginController.login)
+// indexRouter.use(privatePageValidate)
 
-export {loginRouter}
+indexRouter.get("/", privatePageValidate, getController.getPrivateFileResource)
+
+export {indexRouter}

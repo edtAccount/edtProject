@@ -8,22 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.signup = void 0;
-const signupModel_1 = require("../models/signupModel");
-function signup(request, response) {
+let logoutBtn = document.querySelector("#logout-menu-container");
+logoutBtn === null || logoutBtn === void 0 ? void 0 : logoutBtn.addEventListener("click", clickLogoutBtnHandler);
+function clickLogoutBtnHandler() {
     return __awaiter(this, void 0, void 0, function* () {
-        let result = yield (0, signupModel_1.insertUser)(request.body);
-        console.log(result.affectedRows);
-        if (!result.affectedRows) {
-            console.log("회원가입 실패");
-            response.end();
+        const response = yield fetch("/api/logout", {
+            method: "POST",
+        });
+        if (response.redirected == true) {
+            alert("로그아웃 되었습니다.");
+            location.href = response.url;
         }
-        else {
-            response.redirect(302, "http://localhost:3000/login");
-            response.end();
-        }
-        console.log(result);
     });
 }
-exports.signup = signup;

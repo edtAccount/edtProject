@@ -23,13 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginRouter = void 0;
+exports.logoutRouter = void 0;
 const express_1 = require("express");
-const loginController = __importStar(require("../controllers/loginController"));
-const getController = __importStar(require("../controllers/getController"));
-const validations_1 = require("../middleware/validations");
-const loginRouter = (0, express_1.Router)();
-exports.loginRouter = loginRouter;
-// loginRouter.use(publicPageValidate);
-loginRouter.post("/api/login", loginController.login);
-loginRouter.get("/login", validations_1.publicPageValidate, getController.getPublicFileResource);
+const logoutController = __importStar(require("../controllers/logoutController"));
+const logoutRouter = (0, express_1.Router)();
+exports.logoutRouter = logoutRouter;
+logoutRouter.post("/api/logout", logoutController.logout);

@@ -1,15 +1,27 @@
 import express, {Request, Response} from "express";
-
-// import {router} from "./routers/router"
+import cookieParser from "cookie-parser";
+import path from "path"
+import {indexRouter} from "./routers/indexRouter"
 import {loginRouter} from "./routers/loginRouter"
-import { signupRouter } from "./routers/signupRouter";
+import { logoutRouter } from "./routers/logoutRouter";
+import {signupRouter} from "./routers/signupRouter";
+import dotenv from "dotenv";
+dotenv.config();
+
+
 const app = express();
 
-app.use(express.static("public"));
-app.use(express.json())
+app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
+app.use(express.static(path.join(process.env.PUBLIC_PATH,"js")));
+app.use(express.static(path.join(process.env.PRIVATE_PATH,"img")));
+app.use(express.static(path.join(process.env.PRIVATE_PATH,"js")));
 
-// app.use(router)
+app.use(cookieParser());
+app.use(express.json());
+
+app.use(indexRouter);
 app.use(loginRouter);
+app.use(logoutRouter);
 app.use(signupRouter);
 
 

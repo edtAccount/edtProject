@@ -25,7 +25,7 @@ function sendRequestForSignUp() {
         console.log(fullname.value);
         console.log(username.value);
         console.log(userpwd.value);
-        const response = yield fetch("/signup", {
+        const response = yield fetch("/api/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,6 +39,12 @@ function sendRequestForSignUp() {
         username.value = '';
         userpwd.value = '';
         username.focus();
-        location.href = response.url;
+        if (response.redirected == true) {
+            alert("회원가입 되었습니다.");
+            location.href = response.url;
+        }
+        else {
+            alert("중복된 아이디 입니다.");
+        }
     });
 }

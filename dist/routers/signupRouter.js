@@ -26,6 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.signupRouter = void 0;
 const express_1 = require("express");
 const signupController = __importStar(require("../controllers/signupController"));
+const getController = __importStar(require("../controllers/getController"));
+const validations_1 = require("../middleware/validations");
 const signupRouter = (0, express_1.Router)();
 exports.signupRouter = signupRouter;
-signupRouter.post("/signup", signupController.signup);
+// signupRouter.use(publicPageValidate)
+signupRouter.post("/api/signup", signupController.signup);
+signupRouter.get("/signup", validations_1.publicPageValidate, getController.getPublicFileResource);

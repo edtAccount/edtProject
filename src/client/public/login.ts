@@ -17,7 +17,7 @@ async function clickLoginBtnHandler(){
 async function sendRequestForLogin(){
     console.log(username.value);
     console.log(userpwd.value)
-    const response = await fetch("/login", {
+    const response = await fetch("/api/login", {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
@@ -32,5 +32,12 @@ async function sendRequestForLogin(){
     userpwd.value = '';
     username.focus();
 
-    location.href = response.url;
+    console.log(response)
+    console.log(response.redirected);
+    
+    if(response.redirected == true){
+        location.href = response.url;
+    }else{
+        alert("아이디 혹은 비밀번호가 올바르지 않습니다.");
+    }
 }

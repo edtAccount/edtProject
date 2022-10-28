@@ -19,7 +19,7 @@ async function sendRequestForSignUp(){
     console.log(fullname.value);
     console.log(username.value);
     console.log(userpwd.value)
-    const response = await fetch("/signup", {
+    const response = await fetch("/api/signup", {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
@@ -35,5 +35,12 @@ async function sendRequestForSignUp(){
     userpwd.value = '';
     username.focus();
 
-    location.href = response.url;
+
+    if(response.redirected == true){
+        alert("회원가입 되었습니다.");
+
+        location.href = response.url;
+    }else{
+        alert("중복된 아이디 입니다.");
+    }
 }

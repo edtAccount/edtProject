@@ -23,10 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginRouter = void 0;
+exports.indexRouter = void 0;
 const express_1 = require("express");
-const loginController = __importStar(require("../controllers/loginController"));
-const loginRouter = (0, express_1.Router)();
-exports.loginRouter = loginRouter;
-// loginRouter.get("/login", )
-loginRouter.post("/login", loginController.login);
+const getController = __importStar(require("../controllers/getController"));
+const validations_1 = require("../middleware/validations");
+const indexRouter = (0, express_1.Router)();
+exports.indexRouter = indexRouter;
+// indexRouter.use(privatePageValidate)
+indexRouter.get("/", validations_1.privatePageValidate, getController.getPrivateFileResource);
