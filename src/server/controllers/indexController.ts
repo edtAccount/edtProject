@@ -101,8 +101,8 @@ export async function createExpense(req:Request, res:Response){
             "content": content,
             "actualDate": actualDate,
         }//db insert 결과값 리턴
-        const createdIncome = await indexModel.addExpense(body) //
-        res.status(201).send(createdIncome)  
+        const createdExpense = await indexModel.addExpense(body) //
+        res.status(201).send(createdExpense)  
     } catch (err) {
         console.log(err)
     }

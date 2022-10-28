@@ -15,7 +15,7 @@ const actualDateEl = document.getElementById("date");
 const incomeOptionsEl = document.getElementById("income-options");
 const expenseOptionsEl = document.getElementById("expense-options");
 const incomeOptionsSelectEl = document.querySelector("#income-options > select");
-const expenseOptionsSelectEl = document.querySelector("expense-options > select");
+const expenseOptionsSelectEl = document.querySelector("#expense-options > select");
 const amountInputEl = document.getElementById("amount");
 const contentInputEl = document.getElementById("content");
 const submitBtn = document.querySelector(".submit-btn");
@@ -62,13 +62,22 @@ function submitAccountForm() {
                 "amount": amount,
                 "content": content,
             };
-            yield fetch("api/income", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(bodyData)
-            });
+            isIncomeTypeTitle(activeTypeEl) ?
+                yield fetch("api/income", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(bodyData)
+                })
+                :
+                    yield fetch("api/expense", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(bodyData)
+                    });
             amountInputEl.value = "";
             contentInputEl.value = "";
         }));

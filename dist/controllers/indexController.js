@@ -149,8 +149,8 @@ function createExpense(req, res) {
                 "content": content,
                 "actualDate": actualDate,
             }; //db insert 결과값 리턴
-            const createdIncome = yield indexModel.addExpense(body); //
-            res.status(201).send(createdIncome);
+            const createdExpense = yield indexModel.addExpense(body); //
+            res.status(201).send(createdExpense);
         }
         catch (err) {
             console.log(err);

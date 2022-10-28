@@ -7,7 +7,7 @@ const actualDateEl = document.getElementById("date") as HTMLInputElement
 const incomeOptionsEl = document.getElementById("income-options") as HTMLSelectElement
 const expenseOptionsEl = document.getElementById("expense-options") as HTMLSelectElement
 const incomeOptionsSelectEl = document.querySelector("#income-options > select") as HTMLSelectElement
-const expenseOptionsSelectEl = document.querySelector("expense-options > select") as HTMLSelectElement
+const expenseOptionsSelectEl = document.querySelector("#expense-options > select") as HTMLSelectElement
 const amountInputEl = document.getElementById("amount") as HTMLInputElement
 const contentInputEl = document.getElementById("content") as HTMLInputElement
 
@@ -64,7 +64,16 @@ async function submitAccountForm(){
             "amount": amount,
             "content": content,
         }
+        isIncomeTypeTitle(activeTypeEl) ? 
         await fetch("api/income", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyData)
+        })
+        :
+        await fetch("api/expense", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
