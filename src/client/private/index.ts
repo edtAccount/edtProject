@@ -1,4 +1,3 @@
-import {stringToDate} from "../../server/util/customDate"
 
 //로그아웃 element
 const logoutBtn = document.querySelector("#logout-menu-container");
@@ -21,6 +20,7 @@ const submitBtn = document.querySelector(".submit-btn")
 
 
 interface AccountInfo {
+    id: number | null;
     userNum: number | null;
     amount: number | null;
     options: string | null;
@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     initInputType()
     await submitAccountForm()
 })
+
+function stringToDate(date:Date){
+    const targetDate = new Date(date);
+    const arrayDate = `${targetDate.getFullYear().toString()}-${(targetDate.getMonth()+1).toString()}-${targetDate.getDate().toString()}`
+    return arrayDate
+}
 
 function initInputType(){
 
@@ -121,21 +127,42 @@ async function presentAccount(){
         // tableValueEl.classList.add("table-value")
         // tableHeaderAmountEl.classList.add("header-form")
         //테이블 header
+        const tableBodyEl = document.createElement("tbody")
+        tableBodyEl.setAttribute('id', data.id)
         const tableHeaderEl = document.createElement("tr")
-        const tableHeaderDateEl = document.createElement("th").innerText = "날짜"
-        const tableHeaderOptionsEl = document.createElement("th").innerText = "분류"
-        const tableHeaderContentEl = document.createElement("th").innerText = "내용"
-        const tableHeaderAmountEl = document.createElement("th").innerText = "금액"
+        const tableHeaderDateEl = document.createElement("th")
+        tableHeaderDateEl.textContent = "날짜"
+        const tableHeaderOptionsEl = document.createElement("th")
+        tableHeaderOptionsEl.textContent = "분류"
+        const tableHeaderContentEl = document.createElement("th")
+        tableHeaderContentEl.textContent = "내용"
+        const tableHeaderAmountEl = document.createElement("th")
+        tableHeaderAmountEl.textContent = "금액"
         tableHeaderEl.append(tableHeaderDateEl, tableHeaderOptionsEl, tableHeaderContentEl, tableHeaderAmountEl)
         //테이블 value
         const tableValueEl = document.createElement("tr")
-        const tableDateEl = document.createElement("td").innerText = stringToDate(data.actualDate)
-        const tableOptionsEl = document.createElement("td").innerText = data.options
-        const tableContentEl = document.createElement("td").innerText = data.content
-        const tableAmountEl = document.createElement("td").innerText = data.amount.toString()
+        const tableDateEl = document.createElement("td")
+        tableDateEl.textContent = stringToDate(data.actualDate)
+        const tableOptionsEl = document.createElement("td")
+        tableOptionsEl.textContent = data.options
+        const tableContentEl = document.createElement("td")
+        tableContentEl.textContent = data.content
+        const tableAmountEl = document.createElement("td")
+        tableAmountEl.textContent = data.amount.toString()
         tableValueEl.append(tableDateEl, tableOptionsEl, tableContentEl, tableAmountEl)
+        //삭제버튼
+        const tableDelBtn = document.createElement("button")
+        tableDelBtn.innerText = "X"
+        tableDelBtn.onclick = async(event) => {
+            const elId = tableDelBtn.parentElement.id
+            await fetch(`api/income/${elId}`, {
+                method: "DELETE",
+            })
+        }
         
-        tableEl.append(tableHeaderEl, tableValueEl)
+        tableBodyEl.append(tableHeaderEl, tableValueEl, tableDelBtn)
+        
+        tableEl.append(tableBodyEl)
 
         tableContainertEl.append(tableEl)
     });
