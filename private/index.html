@@ -71,6 +71,10 @@
 
             /* border-top: 10px solid gainsboro; */
         }
+        #reportBtn{
+            text-decoration: none;
+            color: black;
+        }
         .menu{
             display: flex;
             align-items: center;
@@ -294,8 +298,9 @@
         #plus-menu-btn:hover{
             transform: scale(1.07);
         }
-        /* <!-- ------------------right area---------------- --> */
-        #right-area{
+            /* <!-- ------------------right area---------------- --> */
+            #right-area{
+            background-color: rgba(255, 255, 255, 0.532);
             display:  flex;
             flex-direction: column;
             align-items: center;
@@ -305,6 +310,26 @@
 
             box-shadow: 0 0 5px 1px gray
         }
+        .modal-header{
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0 5px 1px rgba(248, 192, 9, 0.747);
+        }
+        h3{
+            text-align: center;
+        }
+        .modal-content-item{
+            margin: 30px 0 30px 0;
+        }
+
+
+        /* .modal-container{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(253, 246, 183, 0.87);
+        } */
 
     </style>
 </head>
@@ -324,7 +349,7 @@
                     <p>내역</p>
                 </dir>
                 <div id="report-menu-container" class="menu">
-                    <p>손익계산서</p>
+                    <a href="/report" id="reportBtn"><p>손익계산서</p></a>
                 </div>
             </div>
         </div>
@@ -413,11 +438,72 @@
                 </table>
             </div>
             <div id="plus-menu-container">
-                <div id="plus-menu-btn"></div>
+                <div id="plus-menu-btn" value="false"></div>
             </div>
         </div>
-
-        <script src="./index.js"></script>
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
+        <div id="right-area">
+            <div class="modal-container" id="modal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>수입지출입력</h3>
+                    </div>
+                    <div class="modal-content">
+                        <form class="modal-form">
+                            <div class="modal-content-item">
+                                <label for="type">구분</label>
+                                <select id="type" name="type">
+                                    <option value="incomeInput">수입</option>
+                                    <option value="expenseInput">지출</option>
+                                </select>
+                            </div>
+                            <div class="modal-content-item">
+                                <label for="date">날짜</label>
+                                <input type="date" id="date" class="form-input">
+                            </div>
+                            <div class="modal-content-item" id = "expense-options" hidden = true>
+                                <label for="options">분류</label>
+                                <select id="options" name="options">
+                                    <option value="meal">식비</option>
+                                    <option value="tranport">교통비</option>
+                                    <option value="a">생필품</option>
+                                    <option value="b">주거비</option>
+                                    <option value="c">문화생활비</option>
+                                    <option value="d">교육비</option>
+                                    <option value="e">통신비</option>
+                                    <option value="f">의류미용</option>
+                                    <option value="g">기타소비</option>
+                                </select>
+                            </div>
+                            <div class="modal-content-item" id = "income-options" hidden = true>
+                                <label for="options">분류</label>
+                                <select id="options" name="options">
+                                    <option value="meal">월급</option>
+                                    <option value="tranport">용돈</option>
+                                    <option value="a">기타소득</option>
+                                </select>
+                            </div>
+                            
+                            <div class="modal-content-item">
+                                <label for="amount">금액</label>
+                                <input type="text" id="amount" class="form-input">
+                            </div>
+                            <div class="modal-content-item">
+                                <label for="content">내용</label>
+                                <input type="text" id="content" class="form-input">
+                            </div>
+                            <button type="button" class="submit-btn">입력</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
     </div>
 </body>
+<script src="./index.js"></script>
 </html>

@@ -23,21 +23,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.indexRouter = void 0;
+exports.reportRouter = void 0;
 const express_1 = require("express");
+const reportController = __importStar(require("../controllers/reportController"));
 const getController = __importStar(require("../controllers/getController"));
 const validations_1 = require("../middleware/validations");
-const indexController = __importStar(require("../controllers/indexController"));
-const indexRouter = (0, express_1.Router)();
-exports.indexRouter = indexRouter;
-indexRouter.get("/", validations_1.privatePageValidate, getController.getPrivateFileResource);
-//income 생성,조회,수정, 삭제
-indexRouter.post("/api/income", indexController.createIncome);
-indexRouter.get("/api/incomes", indexController.getIncomes);
-indexRouter.put("/api/income/:incomeId", indexController.updateIncome);
-indexRouter.delete("/api/income/:incomeId", indexController.deleteIncome);
-//expense 생성,조회,수정, 삭제
-indexRouter.post("/api/expense", indexController.createExpense);
-indexRouter.get("/api/expenses", indexController.getExpenses);
-indexRouter.put("/api/expense/:expenseId", indexController.updateExpense);
-indexRouter.delete("/api/expense/:expenseId", indexController.deleteExpense);
+const reportRouter = (0, express_1.Router)();
+exports.reportRouter = reportRouter;
+reportRouter.get("/report", validations_1.privatePageValidate, getController.getPrivateFileResource);
+//월별 카테고리별 소득
+reportRouter.get("/api/report/income/:month", reportController.getIncomeByMonth);
+//월별 소득 총계
+reportRouter.get("/api/report/incomeTotal/:month", reportController.getIncomeTotalByMonth);
+//월별 카테고리별 소비
+reportRouter.get("/api/report/expense/:month", reportController.getExpenseByMonth);
+//월별 소비 총계
+reportRouter.get("/api/report/expenseTotal/:month", reportController.getExpenseTotalByMonth);

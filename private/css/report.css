@@ -1,0 +1,184 @@
+
+header{
+
+  margin: 0 auto;
+}
+main{
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  width : 100%;
+  height : 100%;
+
+}/*
+#totalDiv{
+  width: 100%;
+  display: flex;
+}*/
+
+#monthDiv{
+  margin: 0 auto;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#monthDiv > span{
+  color: aliceblue;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1f253d;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+/* h1 {
+  font-size: 23px;
+}*/
+
+h2 {
+  font-size: 17px;
+}
+h1,
+h2,
+p,
+a,
+span {
+  color: #fff;
+}
+
+
+.titular {
+  display: block;
+  line-height: 60px;
+  margin: 0;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+main{
+  margin: auto;
+  display: grid;
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.block {
+  margin-bottom: 25px;
+  background: #394264;
+  border-radius: 5px;
+  
+}
+.report-box {
+  height: auto;
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+.report-box .titular {
+  background: #11a8ab;
+}
+
+.report-box-amount {
+  width: 150px;
+  line-height: 22px;
+  background: #50597b;
+  text-align: center;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.income-report li {
+  height: 60px;
+  position: relative;
+}
+.expense-report li {
+  height: 60px;
+  position: relative;
+}
+.report-box-tab {
+  line-height: 60px;
+  display: block;
+  border-bottom: 1px solid #1f253d;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  color: azure;
+}
+.report-box-tab:hover {
+  background: #50597b;
+  border-top: 1px solid #1f253d;
+  text-decoration: none;
+}
+.report-box-tab:hover .icon {
+  color: #fff;
+}
+.report-box-tab:hover .report-box-amount {
+  background: #e64c65;
+}
+
+
+/*캘린더*/
+body {
+  background-color: #333;
+  color: #aaa;
+  font-family: 'Josefin Sans';
+}
+
+.calendar {
+  width: 350px;
+  margin: 50px auto 0;
+}
+
+.calendar__month {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+}
+
+.cal-month__previous, .cal-month__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+
+}
+
+.cal-month__next {
+  right: 0;
+}
+
+.cal-month__current {
+  text-align: center;
+  color: #e1e1e1;
+}
+
+/* 
+&:hover {
+  background-color: #42A5F5;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.75);
+  border-radius: 50%;
+  font-weight: 800;
+  color: #111;
+} */

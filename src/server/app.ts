@@ -6,6 +6,7 @@ import {loginRouter} from "./routers/loginRouter"
 import { logoutRouter } from "./routers/logoutRouter";
 import {signupRouter} from "./routers/signupRouter";
 import dotenv from "dotenv";
+import { reportRouter } from "./routers/reportRouter";
 dotenv.config();
 
 
@@ -13,16 +14,28 @@ const app = express();
 
 app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
 app.use(express.static(path.join(process.env.PUBLIC_PATH,"js")));
+app.use(express.static(path.join(process.env.PUBLIC_PATH,"css")));
 app.use(express.static(path.join(process.env.PRIVATE_PATH,"img")));
 app.use(express.static(path.join(process.env.PRIVATE_PATH,"js")));
+app.use(express.static(path.join(process.env.PRIVATE_PATH,"css")));
 
 app.use(cookieParser());
 app.use(express.json());
 
+//라우터 등록
 app.use(indexRouter);
 app.use(loginRouter);
 app.use(logoutRouter);
 app.use(signupRouter);
+app.use(reportRouter)
+
+
+//테스트 코드
+// app.get("/report", (req:Request,res:Response)=>{
+
+//         const filename = req.url.split("/")[1]
+//         res.sendFile(path.join(__dirname,'..','public',filename+".html"))
+// })
 
 
 app.listen(3000, ()=>{
