@@ -1,24 +1,26 @@
 import express, {Request, Response} from "express"
 import {reportRouter} from "./routers/reportRouter"
+import {indexRouter} from "./routers/indexRouter"
 
 const path = require("path")
 const app = express();
 
-app.use(express.static("public"));
-console.log(path.join(__dirname,'..','public'))
-//app.get("/report", express.static(path.join(__dirname,'..','public','report.html')))
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static("public"));
+
 
 //라우터 등록
-app.use("/api", reportRouter)
+app.use("/api", reportRouter, indexRouter)
 
+
+//테스트 코드
 app.get("/report", (req:Request,res:Response)=>{
-    console.log(req)
-    const filename = req.url.split("/")[1]
-    console.log(filename)
-    res.sendFile((path.join(__dirname,'..','public',filename+".html"))
+
+        const filename = req.url.split("/")[1]
+        res.sendFile(path.join(__dirname,'..','public',filename+".html"))
 })
 
 //`./${filename}.html`
