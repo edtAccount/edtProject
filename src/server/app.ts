@@ -9,7 +9,6 @@ import dotenv from "dotenv";
 import { reportRouter } from "./routers/reportRouter";
 dotenv.config();
 
-
 const app = express();
 
 app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
@@ -30,12 +29,6 @@ app.use(signupRouter);
 app.use(reportRouter)
 
 
-//테스트 코드
-// app.get("/report", (req:Request,res:Response)=>{
-
-//         const filename = req.url.split("/")[1]
-//         res.sendFile(path.join(__dirname,'..','public',filename+".html"))
-// })
 
 
 app.listen(3000, ()=>{
