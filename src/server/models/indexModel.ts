@@ -1,6 +1,6 @@
 import { pool } from "./db";
 
-interface AccountInfo {
+export interface AccountInfo {
     userNum: number | null;
     amount: number | null;
     options: string | null;

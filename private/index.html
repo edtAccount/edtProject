@@ -220,7 +220,7 @@
             align-items: center;
             justify-content: center;
             border-collapse: collapse;
-            width: 80%;
+            width: auto;
             border-radius: 0 0 10px 10px;
             box-shadow: 0 0 5px 1px rgba(248, 192, 9, 0.747);
             background-color: white;
@@ -230,7 +230,7 @@
             transform: scale(1.07);
         }
         #breakdown tbody{
-            width: 100%;
+            width: auto;
             height: 100%;
         }
         #breakdown th{
@@ -238,34 +238,36 @@
             border-bottom: 1px solid rgb(255, 217, 0);
         }
         #breakdown td{
+            text-align: center;
             font-size: 12px;
         }
         #table-header{
+            width : 100%;
             background-color: rgba(255, 217, 0, 0.753);
         }
-        #table-content{
+        #table-value{
+            width : 100%;
             text-align: center;
         }
-        .date-form{
+        .header-form{
             border-right: 1px solid rgb(255, 217, 0);
             word-break:break-all; 
             width: 30%;
-            
         }
-        .options-form{
+        /* .header-form{
             border-right: 1px solid rgb(255, 217, 0);
             word-break:break-all; 
             width: 10%
         }
-        .content-form{
+        .header-form{
             border-right: 1px solid rgb(255, 217, 0);
             word-break:break-all; 
             width: 30%
         }
-        .amount-form{
+        .header-form{
             word-break:break-all; 
             width: 30%
-        }
+        } */
         #plus-menu-container{
             margin-top: 10px;
             display: flex;
@@ -379,63 +381,22 @@
                 <button id="next-month">></button>
             </div>
             <div id="breakdown-container">
-                <table  id="breakdown">
-                    <tr id="table-header">
-                        <th class="date-form">날짜</th>
-                        <th class="options-form">분류</th>
-                        <th class="content-form">내용</th>
-                        <th class="amount-form">금액</th>
+
+                <table class="breakdown">
+                    <tr >
+                        <th >날짜</th>
+                        <th >분류</th>
+                        <th >내용</th>
+                        <th >금액</th>
                     </tr>
-                    <tr id="table-content">
-                        <td class="date-form">22.10.22 (토) 23:05</td>
-                        <td class="options-form">식비</td>
-                        <td class="content-form">EDT 팀 회식</td>
-                        <td class="amount-form">200,000원</td>
+                    <tr >
+                        <td >22.10.22 (토) 23:05</td>
+                        <td >식비</td>
+                        <td >EDT 팀 회식</td>
+                        <td >200,000원</td>
                     </tr>
                 </table>
 
-                <table  id="breakdown">
-                    <tr id="table-header">
-                        <th class="date-form">날짜</th>
-                        <th class="options-form">분류</th>
-                        <th class="content-form">내용</th>
-                        <th class="amount-form">금액</th>
-                    </tr>
-                    <tr id="table-content">
-                        <td class="date-form">22.10.22 (토) 23:05</td>
-                        <td class="options-form">식비</td>
-                        <td class="content-form">EDT 팀 회식</td>
-                        <td class="amount-form">200,000원</td>
-                    </tr>
-                </table>
-                <table  id="breakdown">
-                    <tr id="table-header">
-                        <th class="date-form">날짜</th>
-                        <th class="options-form">분류</th>
-                        <th class="content-form">내용</th>
-                        <th class="amount-form">금액</th>
-                    </tr>
-                    <tr id="table-content">
-                        <td class="date-form">22.10.22 (토) 23:05</td>
-                        <td class="options-form">식비</td>
-                        <td class="content-form">EDT 팀 회식</td>
-                        <td class="amount-form">200,000원</td>
-                    </tr>
-                </table>
-                <table  id="breakdown">
-                    <tr id="table-header">
-                        <th class="date-form">날짜</th>
-                        <th class="options-form">분류</th>
-                        <th class="content-form">내용</th>
-                        <th class="amount-form">금액</th>
-                    </tr>
-                    <tr id="table-content">
-                        <td class="date-form">22.10.22 (토) 23:05</td>
-                        <td class="options-form">식비</td>
-                        <td class="content-form">EDT 팀 회식</td>
-                        <td class="amount-form">200,000원</td>
-                    </tr>
-                </table>
             </div>
             <div id="plus-menu-container">
                 <div id="plus-menu-btn" value="false"></div>
