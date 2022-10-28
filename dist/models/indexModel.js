@@ -16,20 +16,22 @@ function addIncome(incomeInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { userNum, options, amount, content, actualDate } = incomeInfo;
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`INSERT INTO income_tbl(userNum, options, amount, content, actualDate)
          VALUES(?, ?, ?, ? ,?)`, [userNum, options, amount, content, actualDate]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -37,9 +39,8 @@ exports.addIncome = addIncome;
 function findIncomes(userNum) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select *
             from income_tbl
             where usernum = (?)`, [userNum]);
@@ -47,11 +48,14 @@ function findIncomes(userNum) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -59,9 +63,8 @@ exports.findIncomes = findIncomes;
 function modifyIncome(incomeId, updateInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let result = null;
                 for (let [key, value] of Object.entries(updateInfo)) {
                     if (value !== null) {
@@ -74,11 +77,14 @@ function modifyIncome(incomeId, updateInfo) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -86,19 +92,21 @@ exports.modifyIncome = modifyIncome;
 function removeIncome(incomeId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`delete from income_tbl where id = ?`, [incomeId]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -107,20 +115,22 @@ function addExpense(expenseInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { userNum, options, amount, content, actualDate } = expenseInfo;
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`INSERT INTO expense_tbl(userNum, options, amount, content, actualDate)
          VALUES(?, ?, ?, ? ,?)`, [userNum, options, amount, content, actualDate]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -128,9 +138,8 @@ exports.addExpense = addExpense;
 function findExpenses(userNum) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select *
             from expense_tbl
             where usernum = (?)`, [userNum]);
@@ -138,11 +147,14 @@ function findExpenses(userNum) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -150,26 +162,28 @@ exports.findExpenses = findExpenses;
 function modifyExpense(expenseId, updateInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let result = null;
                 for (let [key, value] of Object.entries(updateInfo)) {
                     if (value !== null) {
                         yield conn.query(`update expense_tbl
                 set ${key} = ? 
-                where id = ?`, [value, expenseId]);
+                  where id = ?`, [value, expenseId]);
                     }
                 }
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -177,19 +191,21 @@ exports.modifyExpense = modifyExpense;
 function removeExpense(expenseId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`delete from expense_tbl where id = ?`, [expenseId]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }

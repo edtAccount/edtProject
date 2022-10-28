@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="area-container">
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
+        <div id="left-area">
+            <div id="logo-container">
+                <p id="logo"></p>
+            </div>
+            <div id="menu-container">
+                <dir id="logout-menu-container" class="menu">
+                    <p>로그아웃</p>
+                </dir>
+                <dir id="breadown-menu-container" class="menu">
+                    <p>내역</p>
+                </dir>
+                <div id="report-menu-container" class="menu">
+                    <a href="/report" id="reportBtn"><p>손익계산서</p></a>
+                </div>
+            </div>
+        </div>
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
+        <div id="middle-area">
+            <div id="title-container">
+                <p id="title">내역</p>
+            </div>
+            <div id="status-container">
+                <div id="total-container" class="status">
+                    Total
+                    <p id="total" class="status-detail">100,000,000원</p>
+                </div>
+                <div id="income-container" class="status">
+                    Income
+                    <p id="income" class="status-detail">10,000,00원</p>
+                </div>
+                <div id="expense-container" class="status">
+                    Expense
+                    <p id="expense" class="status-detail">100,000원</p>
+                </div>
+            </div>
+            <div id="date-container">
+                <button id="prev-month">&lt;</button>
+                <input type="date" id="date-input">
+                <button id="next-month"> &gt;</button>
+            </div>
+            <div id="breakdown-container">
+                <table  id="breakdown">
+                    <tr id="table-header">
+                        <th class="date-form">날짜</th>
+                        <th class="options-form">분류</th>
+                        <th class="content-form">내용</th>
+                        <th class="amount-form">금액</th>
+                    </tr>
+                    <tr id="table-content">
+                        <td class="date-form">22.10.22 (토) 23:05</td>
+                        <td class="options-form">식비</td>
+                        <td class="content-form">EDT 팀 회식</td>
+                        <td class="amount-form">200,000원</td>
+                    </tr>
+                </table>
+
+                <table  id="breakdown">
+                    <tr id="table-header">
+                        <th class="date-form">날짜</th>
+                        <th class="options-form">분류</th>
+                        <th class="content-form">내용</th>
+                        <th class="amount-form">금액</th>
+                    </tr>
+                    <tr id="table-content">
+                        <td class="date-form">22.10.22 (토) 23:05</td>
+                        <td class="options-form">식비</td>
+                        <td class="content-form">EDT 팀 회식</td>
+                        <td class="amount-form">200,000원</td>
+                    </tr>
+                </table>
+                <table  id="breakdown">
+                    <tr id="table-header">
+                        <th class="date-form">날짜</th>
+                        <th class="options-form">분류</th>
+                        <th class="content-form">내용</th>
+                        <th class="amount-form">금액</th>
+                    </tr>
+                    <tr id="table-content">
+                        <td class="date-form">22.10.22 (토) 23:05</td>
+                        <td class="options-form">식비</td>
+                        <td class="content-form">EDT 팀 회식</td>
+                        <td class="amount-form">200,000원</td>
+                    </tr>
+                </table>
+                <table  id="breakdown">
+                    <tr id="table-header">
+                        <th class="date-form">날짜</th>
+                        <th class="options-form">분류</th>
+                        <th class="content-form">내용</th>
+                        <th class="amount-form">금액</th>
+                    </tr>
+                    <tr id="table-content">
+                        <td class="date-form">22.10.22 (토) 23:05</td>
+                        <td class="options-form">식비</td>
+                        <td class="content-form">EDT 팀 회식</td>
+                        <td class="amount-form">200,000원</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="plus-menu-container">
+                <div id="plus-menu-btn" value="false"></div>
+            </div>
+        </div>
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
+        <div id="right-area">
+            <div class="modal-container" id="modal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>수입지출입력</h3>
+                    </div>
+                    <div class="modal-content">
+                        <form class="modal-form">
+                            <div class="modal-content-item">
+                                <label for="type">구분</label>
+                                <select id="type" name="type">
+                                    <option value="incomeInput">수입</option>
+                                    <option value="expenseInput">지출</option>
+                                </select>
+                            </div>
+                            <div class="modal-content-item">
+                                <label for="date">날짜</label>
+                                <input type="date" id="date" class="form-input">
+                            </div>
+                            <div class="modal-content-item" id = "expense-options" hidden = true>
+                                <label for="options">분류</label>
+                                <select id="options" name="options">
+                                    <option value="meal">식비</option>
+                                    <option value="tranport">교통비</option>
+                                    <option value="a">생필품</option>
+                                    <option value="b">주거비</option>
+                                    <option value="c">문화생활비</option>
+                                    <option value="d">교육비</option>
+                                    <option value="e">통신비</option>
+                                    <option value="f">의류미용</option>
+                                    <option value="g">기타소비</option>
+                                </select>
+                            </div>
+                            <div class="modal-content-item" id = "income-options" hidden = true>
+                                <label for="options">분류</label>
+                                <select id="options" name="options">
+                                    <option value="meal">월급</option>
+                                    <option value="tranport">용돈</option>
+                                    <option value="a">기타소득</option>
+                                </select>
+                            </div>
+                            
+                            <div class="modal-content-item">
+                                <label for="amount">금액</label>
+                                <input type="text" id="amount" class="form-input">
+                            </div>
+                            <div class="modal-content-item">
+                                <label for="content">내용</label>
+                                <input type="text" id="content" class="form-input">
+                            </div>
+                            <button type="button" class="submit-btn">입력</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+        <!-- ------------------------------------------- -->
+        <!-- ------------------------------------------- -->
+    </div>
+</body>
+</html>

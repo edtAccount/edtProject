@@ -1,12 +1,11 @@
-import {pool} from "./db"
+import { pool } from "./db"
 
 
-export async function findIncomeByMonth(month:string) {
+export async function findIncomeByMonth(month: string) {
     try {
-        let conn = null;
+        let conn = await pool.getConnection();
         try {
-            conn = await pool.getConnection();
-            let [ result ] = await conn.query(
+            let [result] = await conn.query(
                 `select options, sum(amount) as "optionAmount"
                 from income_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)
@@ -15,20 +14,22 @@ export async function findIncomeByMonth(month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            console.log("Query err");
+            conn.release();
+            return false;
         }
     } catch (err) {
-        console.log(err)
+        console.log("getConnection err");
+        return false
     }
 }
 
 
-export async function findIncomeTotalByMonth(month:string){
+export async function findIncomeTotalByMonth(month: string) {
     try {
-        let conn = null;
+        let conn = await pool.getConnection();
         try {
-            conn = await pool.getConnection();
-            let [ result ] = await conn.query(
+            let [result] = await conn.query(
                 `select sum(amount) as "totalAmount"
                 from income_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)`, [month]
@@ -36,21 +37,23 @@ export async function findIncomeTotalByMonth(month:string){
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            console.log("Query err");
+            conn.release();
+            return false;
         }
     } catch (err) {
-        console.log(err)
+        console.log("getConnection err");
+        return false
     }
 }
 
 
 
-export async function findExpenseByMonth(month:string) {
+export async function findExpenseByMonth(month: string) {
     try {
-        let conn = null;
+        let conn = await pool.getConnection();
         try {
-            conn = await pool.getConnection();
-            let [ result ] = await conn.query(
+            let [result] = await conn.query(
                 `select options, sum(amount) as "optionAmount"
                 from expense_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)
@@ -59,20 +62,22 @@ export async function findExpenseByMonth(month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            console.log("Query err");
+            conn.release();
+            return false;
         }
     } catch (err) {
-        console.log(err)
+        console.log("getConnection err");
+        return false
     }
 }
 
 
-export async function findExpenseTotalByMonth(month:string) {
+export async function findExpenseTotalByMonth(month: string) {
     try {
-        let conn = null;
+        let conn = await pool.getConnection();
         try {
-            conn = await pool.getConnection();
-            let [ result ] = await conn.query(
+            let [result] = await conn.query(
                 `select sum(amount) as "totalAmount"
                 from expense_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)`, [month]
@@ -80,10 +85,13 @@ export async function findExpenseTotalByMonth(month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            console.log("Query err");
+            conn.release();
+            return false;
         }
     } catch (err) {
-        console.log(err)
+        console.log("getConnection err");
+        return false
     }
 }
 

@@ -14,12 +14,12 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const reportRouter_1 = require("./routers/reportRouter");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use(express_1.default.static(path_1.default.join(process.env.PUBLIC_PATH, "img")));
+// app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
 app.use(express_1.default.static(path_1.default.join(process.env.PUBLIC_PATH, "js")));
-app.use(express_1.default.static(path_1.default.join(process.env.PUBLIC_PATH, "css")));
-app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "img")));
+// app.use(express.static(path.join(process.env.PUBLIC_PATH,"css")));
+// app.use(express.static(path.join(process.env.PRIVATE_PATH,"img")));
 app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "js")));
-app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "css")));
+// app.use(express.static(path.join(process.env.PRIVATE_PATH,"css")));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 //라우터 등록

@@ -1,3 +1,4 @@
+import "./css/report.css";
 
 
 const incomeReport =  document.querySelector(".income-report")

@@ -1,5 +1,7 @@
-const username = document.querySelector("#username");
-const userpwd = document.querySelector("#userpwd");
+import "./css/login.css";
+
+const username = document.querySelector("#username") as HTMLInputElement;
+const userpwd = document.querySelector("#userpwd")  as HTMLInputElement;
 const loginBtn = document.querySelector("#loginBtn");
 
 loginBtn.addEventListener("click", clickLoginBtnHandler);

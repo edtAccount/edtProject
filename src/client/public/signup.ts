@@ -1,6 +1,8 @@
-const fullname = document.querySelector("#fullname");
-const username = document.querySelector("#username");
-const userpwd = document.querySelector("#userpwd");
+import "./css/signup.css";
+
+const fullname = document.querySelector("#fullname") as HTMLInputElement;
+const username = document.querySelector("#username") as HTMLInputElement;
+const userpwd = document.querySelector("#userpwd")  as HTMLInputElement;
 const signupBtn = document.querySelector("#signupBtn");
 
 signupBtn.addEventListener("click", clickSignBtnHandler);

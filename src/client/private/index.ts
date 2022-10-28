@@ -1,3 +1,6 @@
+import "./css/index.css";
+
+
 const reportMenuContainer = document.getElementById("report-menu-container")
 
 //수입 지출 입력 관련 element

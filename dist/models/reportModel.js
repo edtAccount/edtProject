@@ -14,9 +14,8 @@ const db_1 = require("./db");
 function findIncomeByMonth(month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select options, sum(amount) as "optionAmount"
                 from income_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)
@@ -25,11 +24,14 @@ function findIncomeByMonth(month) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -37,9 +39,8 @@ exports.findIncomeByMonth = findIncomeByMonth;
 function findIncomeTotalByMonth(month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select sum(amount) as "totalAmount"
                 from income_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)`, [month]);
@@ -47,11 +48,14 @@ function findIncomeTotalByMonth(month) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -59,9 +63,8 @@ exports.findIncomeTotalByMonth = findIncomeTotalByMonth;
 function findExpenseByMonth(month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select options, sum(amount) as "optionAmount"
                 from expense_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)
@@ -70,11 +73,14 @@ function findExpenseByMonth(month) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
@@ -82,9 +88,8 @@ exports.findExpenseByMonth = findExpenseByMonth;
 function findExpenseTotalByMonth(month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let conn = null;
+            let conn = yield db_1.pool.getConnection();
             try {
-                conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select sum(amount) as "totalAmount"
                 from expense_tbl
                 where DATE_FORMAT(insert_date, "%m") = (?)`, [month]);
@@ -92,11 +97,14 @@ function findExpenseTotalByMonth(month) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                console.log("Query err");
+                conn.release();
+                return false;
             }
         }
         catch (err) {
-            console.log(err);
+            console.log("getConnection err");
+            return false;
         }
     });
 }
