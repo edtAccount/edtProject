@@ -7,7 +7,7 @@ interface AccountInfo {
     content: string | null;
     actualDate: Date | null;
 }
-//userNum:number, options:string, amount:number, content:string, actualDate:Date
+
 export async function addIncome(incomeInfo:AccountInfo) {
   try {
     const {userNum, options, amount, content, actualDate} = incomeInfo

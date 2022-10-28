@@ -35,10 +35,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getExpenseTotalByMonth = exports.getExpenseByMonth = exports.getIncomeTotalByMonth = exports.getIncomeByMonth = void 0;
 const reportModel = __importStar(require("../models/reportModel"));
 function getIncomeByMonth(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const month = req.params.month || "10";
-            const data = yield reportModel.findIncomeByMonth(month);
+            const data = yield reportModel.findIncomeByMonth(userNum, month);
             res.send(data);
         }
         catch (err) {
@@ -48,10 +50,12 @@ function getIncomeByMonth(req, res) {
 }
 exports.getIncomeByMonth = getIncomeByMonth;
 function getIncomeTotalByMonth(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const month = req.params.month || "10";
-            const data = yield reportModel.findIncomeTotalByMonth(month);
+            const data = yield reportModel.findIncomeTotalByMonth(userNum, month);
             res.send(data);
         }
         catch (err) {
@@ -61,10 +65,12 @@ function getIncomeTotalByMonth(req, res) {
 }
 exports.getIncomeTotalByMonth = getIncomeTotalByMonth;
 function getExpenseByMonth(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const month = req.params.month || "10";
-            const data = yield reportModel.findExpenseByMonth(month);
+            const data = yield reportModel.findExpenseByMonth(userNum, month);
             res.send(data);
         }
         catch (err) {
@@ -74,10 +80,12 @@ function getExpenseByMonth(req, res) {
 }
 exports.getExpenseByMonth = getExpenseByMonth;
 function getExpenseTotalByMonth(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const month = req.params.month || "10";
-            const data = yield reportModel.findExpenseTotalByMonth(month);
+            const data = yield reportModel.findExpenseTotalByMonth(userNum, month);
             res.send(data);
         }
         catch (err) {

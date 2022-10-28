@@ -39,6 +39,7 @@ const indexModel = __importStar(require("../models/indexModel"));
  * income 컨트롤러
  */
 function createIncome(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.body) {
@@ -46,7 +47,7 @@ function createIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const { options, amount, content, actualDate } = req.body;
             const body = {
                 "userNum": userNum,
@@ -65,10 +66,11 @@ function createIncome(req, res) {
 }
 exports.createIncome = createIncome;
 function getIncomes(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const data = yield indexModel.findIncomes(userNum); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
         }
@@ -79,6 +81,7 @@ function getIncomes(req, res) {
 }
 exports.getIncomes = getIncomes;
 function updateIncome(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
@@ -86,7 +89,7 @@ function updateIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const incomeId = Number(req.params.incomeId);
             const { amount, content, options, actualDate } = req.body || "";
             const updateInfo = {
@@ -105,6 +108,7 @@ function updateIncome(req, res) {
 }
 exports.updateIncome = updateIncome;
 function deleteIncome(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
@@ -112,7 +116,7 @@ function deleteIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const incomeId = Number(req.params.incomeId);
             const data = yield indexModel.removeIncome(incomeId); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
@@ -128,6 +132,7 @@ exports.deleteIncome = deleteIncome;
  * expense 컨트롤러
  */
 function createExpense(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.body) {
@@ -135,7 +140,7 @@ function createExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const { options, amount, content, actualDate } = req.body;
             const body = {
                 "userNum": userNum,
@@ -154,10 +159,11 @@ function createExpense(req, res) {
 }
 exports.createExpense = createExpense;
 function getExpenses(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const data = yield indexModel.findExpenses(userNum); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
         }
@@ -168,6 +174,7 @@ function getExpenses(req, res) {
 }
 exports.getExpenses = getExpenses;
 function updateExpense(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
@@ -175,7 +182,7 @@ function updateExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const expenseId = Number(req.params.expenseId);
             const { amount, content, options, actualDate } = req.body || "";
             const updateInfo = {
@@ -194,6 +201,7 @@ function updateExpense(req, res) {
 }
 exports.updateExpense = updateExpense;
 function deleteExpense(req, res) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
@@ -201,7 +209,7 @@ function deleteExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = 6; //req.headers....//req에서 user식별할 값 찾아 저장
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
             const expenseId = Number(req.params.expenseId);
             const data = yield indexModel.removeExpense(expenseId); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);

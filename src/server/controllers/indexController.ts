@@ -13,8 +13,7 @@ export async function createIncome(req:Request, res:Response){
             return;
         }   
         //user식별값
-
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const {options, amount, content, actualDate} = req.body
         const body = {
             "userNum": userNum,
@@ -34,7 +33,7 @@ export async function createIncome(req:Request, res:Response){
 export async function getIncomes(req:Request, res:Response){
     try {
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const data = await indexModel.findIncomes(userNum)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
@@ -49,7 +48,7 @@ export async function updateIncome(req:Request, res:Response){
             return;
         }  
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const incomeId = Number(req.params.incomeId)
         const {amount, content, options, actualDate} = req.body || ""
         const updateInfo = {
@@ -73,7 +72,7 @@ export async function deleteIncome(req:Request, res:Response){
             return;
         }  
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const incomeId = Number(req.params.incomeId)
         const data = await indexModel.removeIncome(incomeId)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
@@ -93,7 +92,7 @@ export async function createExpense(req:Request, res:Response){
             return;
         }   
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const {options, amount, content, actualDate} = req.body
         const body = {
             "userNum": userNum,
@@ -112,7 +111,7 @@ export async function createExpense(req:Request, res:Response){
 export async function getExpenses(req:Request, res:Response){
     try {
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const data = await indexModel.findExpenses(userNum)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
@@ -127,7 +126,7 @@ export async function updateExpense(req:Request, res:Response){
             return;
         }  
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const expenseId = Number(req.params.expenseId)
         const {amount, content, options, actualDate} = req.body || ""
         const updateInfo = {
@@ -150,7 +149,7 @@ export async function deleteExpense(req:Request, res:Response){
             return;
         }  
         //user식별값
-        const userNum = 6//req.headers....//req에서 user식별할 값 찾아 저장
+        const userNum = Number(req.cookies?.id)
         const expenseId = Number(req.params.expenseId)
         const data = await indexModel.removeExpense(expenseId)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 

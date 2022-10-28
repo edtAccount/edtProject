@@ -3,8 +3,9 @@ import {Request, Response} from "express"
 
 export async function getIncomeByMonth(req:Request, res:Response){
     try {
+        const userNum = Number(req.cookies?.id)
         const month = req.params.month || "10";
-        const data = await reportModel.findIncomeByMonth(month)
+        const data = await reportModel.findIncomeByMonth(userNum,month)
         res.send(data)
     } catch (err) {
         console.log(err)
@@ -13,8 +14,9 @@ export async function getIncomeByMonth(req:Request, res:Response){
 
 export async function getIncomeTotalByMonth(req:Request, res:Response){
     try {
+        const userNum = Number(req.cookies?.id)
         const month = req.params.month || "10";
-        const data = await reportModel.findIncomeTotalByMonth(month)
+        const data = await reportModel.findIncomeTotalByMonth(userNum,month)
         res.send(data)
     } catch (err) {
         console.log(err)
@@ -23,8 +25,9 @@ export async function getIncomeTotalByMonth(req:Request, res:Response){
 
 export async function getExpenseByMonth(req:Request, res:Response){
     try {
+        const userNum = Number(req.cookies?.id)
         const month = req.params.month || "10";
-        const data = await reportModel.findExpenseByMonth(month)
+        const data = await reportModel.findExpenseByMonth(userNum,month)
         res.send(data)
     } catch (err) {
         console.log(err)
@@ -33,8 +36,9 @@ export async function getExpenseByMonth(req:Request, res:Response){
 
 export async function getExpenseTotalByMonth(req:Request, res:Response){
     try {
+        const userNum = Number(req.cookies?.id)
         const month = req.params.month || "10";
-        const data = await reportModel.findExpenseTotalByMonth(month)
+        const data = await reportModel.findExpenseTotalByMonth(userNum,month)
         res.send(data)
     } catch (err) {
         console.log(err)
