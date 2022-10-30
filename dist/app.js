@@ -39,6 +39,11 @@ app.use(loginRouter_1.loginRouter);
 app.use(logoutRouter_1.logoutRouter);
 app.use(signupRouter_1.signupRouter);
 app.use(reportRouter_1.reportRouter);
+app.use((req, res) => {
+    const err = new Error();
+    err.message = "잘못된 접근입니다.";
+    res.status(400).send(err);
+});
 app.listen(3000, () => {
     console.log("listening to 3000");
 });

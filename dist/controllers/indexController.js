@@ -47,7 +47,7 @@ function createIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const { options, amount, content, actualDate } = req.body;
             const body = {
                 "userNum": userNum,
@@ -71,7 +71,7 @@ function getIncomes(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const data = yield indexModel.findIncomes(userNum); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
         }
@@ -87,7 +87,7 @@ function getIncomesByDate(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const actualDate = req.params.actualDate;
             const data = yield indexModel.findIncomes(userNum, actualDate); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
@@ -108,7 +108,7 @@ function updateIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const incomeId = Number(req.params.incomeId);
             const { amount, content, options, actualDate } = req.body || "";
             const updateInfo = {
@@ -136,7 +136,7 @@ function deleteIncome(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const incomeId = Number(req.params.incomeId);
             const data = yield indexModel.removeIncome(incomeId); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
@@ -161,7 +161,7 @@ function createExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const { options, amount, content, actualDate } = req.body;
             const body = {
                 "userNum": userNum,
@@ -185,7 +185,7 @@ function getExpenses(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const data = yield indexModel.findExpenses(userNum); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
         }
@@ -201,7 +201,7 @@ function getExpensesByDate(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const actualDate = req.params.actualDate;
             const data = yield indexModel.findExpenses(userNum, actualDate); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
@@ -222,7 +222,7 @@ function updateExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const expenseId = Number(req.params.expenseId);
             const { amount, content, options, actualDate } = req.body || "";
             const updateInfo = {
@@ -250,7 +250,7 @@ function deleteExpense(req, res) {
                 return;
             }
             //user식별값
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const expenseId = Number(req.params.expenseId);
             const data = yield indexModel.removeExpense(expenseId); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);

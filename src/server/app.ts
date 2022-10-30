@@ -39,7 +39,9 @@ app.use(logoutRouter);
 app.use(signupRouter);
 app.use(reportRouter)
 
-
+app.use((req, res)=>{
+    res.status(400).send("잘못된 접근입니다.")
+})
 
 
 app.listen(3000, ()=>{

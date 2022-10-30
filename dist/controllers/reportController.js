@@ -38,7 +38,8 @@ function getIncomeByMonth(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
+            console.log("req.session.user.id", req.session.user.id);
             const month = req.params.month || "10";
             const data = yield reportModel.findIncomeByMonth(userNum, month);
             res.send(data);
@@ -54,7 +55,7 @@ function getIncomeTotalByMonth(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const month = req.params.month || "10";
             const data = yield reportModel.findIncomeTotalByMonth(userNum, month);
             res.send(data);
@@ -70,7 +71,7 @@ function getExpenseByMonth(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const month = req.params.month || "10";
             const data = yield reportModel.findExpenseByMonth(userNum, month);
             res.send(data);
@@ -86,7 +87,7 @@ function getExpenseTotalByMonth(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
             const month = req.params.month || "10";
             const data = yield reportModel.findExpenseTotalByMonth(userNum, month);
             res.send(data);

@@ -8,7 +8,7 @@ export async function findIncomeByMonth(userNum:number, month:string) {
             let [result] = await conn.query(
                 `select options, sum(amount) as "optionAmount"
                 from income_tbl
-                where usernum = ? 
+                where usernum = (?)
                 and DATE_FORMAT(insert_date, "%m") = (?)
                 group by options`
                 , [userNum, month]
@@ -86,7 +86,7 @@ export async function findExpenseTotalByMonth(userNum:number, month:string) {
             let [result] = await conn.query(
                 `select sum(amount) as "totalAmount"
                 from expense_tbl
-                where usernum = ? 
+                where usernum = (?)
                 and DATE_FORMAT(insert_date, "%m") = (?)`
                 , [userNum, month]
             )

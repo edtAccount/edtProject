@@ -44,7 +44,6 @@ function login(request, response) {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
         let result = yield (0, loginModel_1.selectUser)((_a = request.body) === null || _a === void 0 ? void 0 : _a.username, (_b = request.body) === null || _b === void 0 ? void 0 : _b.userpwd);
-        console.log(result);
         if (!result.length) {
             console.log("로그인 실패");
             response.end();
@@ -52,6 +51,7 @@ function login(request, response) {
         else {
             // 세션 사용!!!
             request.session.user = {
+                id: result[0]["id"],
                 name: request.body.username,
                 password: bcrypt.hashSync(request.body.userpwd, 10),
                 authorized: true,

@@ -18,7 +18,7 @@ function findIncomeByMonth(userNum, month) {
             try {
                 let [result] = yield conn.query(`select options, sum(amount) as "optionAmount"
                 from income_tbl
-                where usernum = ? 
+                where usernum = (?)
                 and DATE_FORMAT(insert_date, "%m") = (?)
                 group by options`, [userNum, month]);
                 conn.release();
@@ -95,7 +95,7 @@ function findExpenseTotalByMonth(userNum, month) {
             try {
                 let [result] = yield conn.query(`select sum(amount) as "totalAmount"
                 from expense_tbl
-                where usernum = ? 
+                where usernum = (?)
                 and DATE_FORMAT(insert_date, "%m") = (?)`, [userNum, month]);
                 conn.release();
                 return result;

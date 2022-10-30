@@ -144,7 +144,7 @@ export const breakdownExpenseEl = document.querySelector("#breakdown-expense")
 
 function initDate() {
     
-    dateInputEl.value = new Date().toISOString().substring(0, 10);;
+    dateInputEl.value = new Date().toISOString().substring(0, 10);
 }
 
 function stringToDate(date:Date){
@@ -167,8 +167,9 @@ async function initAccount(){
 
 async function presentAccountElByType(type: string){
     const tableAccount = document.createElement("div")
-    
+    console.log(dateInputEl.value)
     let result = await fetch(`api/${type}s`)
+    //let result = await fetch(`api/${type}s?${dateInputEl.value}`)
     let datas = await result.json()
 
     datas.forEach((data: AccountInfo) => {

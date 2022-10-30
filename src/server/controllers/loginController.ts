@@ -8,8 +8,6 @@ dotenv.config();
 export async function login(request:Request, response:Response){
 
     let result = await selectUser(request.body?.username, request.body?.userpwd);
-
-    console.log(result)
     if(!result.length){
         console.log("로그인 실패");
         
@@ -18,6 +16,7 @@ export async function login(request:Request, response:Response){
 
         // 세션 사용!!!
         request.session.user = {
+            id : result[0]["id"],
             name : request.body.username,
             password : bcrypt.hashSync(request.body.userpwd, 10),
             authorized: true,
