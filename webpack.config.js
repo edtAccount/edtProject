@@ -10,8 +10,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const privateConfig = Object.assign({},{
     mode: 'production',
     entry: {
-        main: "./src/client/private/index.ts",
-        report: "./src/client/private/report.ts",
+        main: "./src/client/private/ts/index.ts",
+        report: "./src/client/private/ts/report.ts",
     },
     output: {
         filename: '[name].[contenthash].bundle.js',
@@ -40,18 +40,18 @@ const privateConfig = Object.assign({},{
         new HtmlWebpackPlugin({
             filename: "../index.html",
             template: "./src/client/private/index.html",
-            inject: false,
+            // inject: false,
             minify: true,
             chunks: ["main"],
-            // path: path.join(__dirname, "private"),
+            publicPath: "./",
           }),
           new HtmlWebpackPlugin({
             filename: "../report.html",
             template: "./src/client/private/report.html",
-            inject: false,
+            // inject: false,
             minify: true,
             chunks: ["report"],
-            // path: path.join(__dirname, "private"),
+            publicPath: "./",
           }),
     ],
     resolve:{
@@ -75,8 +75,8 @@ const privateConfig = Object.assign({},{
 const publicConfig = Object.assign({},{
     mode: 'production',
     entry: {
-        login: "./src/client/public/login.ts",
-        signup: "./src/client/public/signup.ts",
+        login: "./src/client/public/ts/login.ts",
+        signup: "./src/client/public/ts/signup.ts",
     },
     output: {
         filename: '[name].[contenthash].bundle.js',
@@ -105,16 +105,18 @@ const publicConfig = Object.assign({},{
         new HtmlWebpackPlugin({
             filename: "../login.html",
             template: "./src/client/public/login.html",
-            inject: false,
+            // inject: false,
             minify: true,
             chunks: ["login"],
+            publicPath: "./",
           }),
           new HtmlWebpackPlugin({
             filename: "../signup.html",
             template: "./src/client/public/signup.html",
-            inject: false,
+            // inject: false,
             minify: true,
             chunks: ["signup"],
+            publicPath: "./",
           }),
     ],
     resolve:{

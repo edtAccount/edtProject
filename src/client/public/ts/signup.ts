@@ -1,4 +1,4 @@
-import "./css/signup.css";
+import "../css/signup.css";
 
 const fullname = document.querySelector("#fullname") as HTMLInputElement;
 const username = document.querySelector("#username") as HTMLInputElement;
