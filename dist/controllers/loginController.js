@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,13 +36,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
+const bcrypt = __importStar(require("bcrypt"));
 const loginModel_1 = require("../models/loginModel");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 function login(request, response) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(request.cookies);
         let result = yield (0, loginModel_1.selectUser)((_a = request.body) === null || _a === void 0 ? void 0 : _a.username, (_b = request.body) === null || _b === void 0 ? void 0 : _b.userpwd);
         console.log(result);
         if (!result.length) {
@@ -27,9 +50,16 @@ function login(request, response) {
             response.end();
         }
         else {
-            response.cookie("username", (_c = request.body) === null || _c === void 0 ? void 0 : _c.username, {
-                maxAge: 60 * 60 * 24,
-            });
+            // 세션 사용!!!
+            request.session.user = {
+                name: (_c = request.body) === null || _c === void 0 ? void 0 : _c.username,
+                password: bcrypt.hashSync((_d = request.body) === null || _d === void 0 ? void 0 : _d.userpwd, 10),
+                authorized: true,
+            };
+            // 쿠키 사용!!
+            // response.cookie("username", request.body?.username, {
+            //     maxAge:60*60*24,
+            // });
             response.cookie("id", result[0].id, {
                 maxAge: 60 * 60 * 24,
             });

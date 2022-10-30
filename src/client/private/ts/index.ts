@@ -1,4 +1,4 @@
-import "./css/index.css";
+import "../css/index.css";
 
 
 const reportMenuContainer = document.getElementById("report-menu-container")

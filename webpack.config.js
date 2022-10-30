@@ -10,8 +10,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const privateConfig = Object.assign({},{
     mode: 'production',
     entry: {
-        main: "./src/client/private/index.ts",
-        report: "./src/client/private/report.ts",
+        main: "./src/client/private/ts/index.ts",
+        report: "./src/client/private/ts/report.ts",
     },
     output: {
         filename: '[name].[contenthash].bundle.js',
@@ -75,8 +75,8 @@ const privateConfig = Object.assign({},{
 const publicConfig = Object.assign({},{
     mode: 'production',
     entry: {
-        login: "./src/client/public/login.ts",
-        signup: "./src/client/public/signup.ts",
+        login: "./src/client/public/ts/login.ts",
+        signup: "./src/client/public/ts/signup.ts",
     },
     output: {
         filename: '[name].[contenthash].bundle.js',

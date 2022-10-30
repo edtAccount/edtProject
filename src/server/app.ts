@@ -1,12 +1,14 @@
 import express, {Request, Response} from "express";
 import cookieParser from "cookie-parser";
+import session from "express-session";
+const FileStore = require('session-file-store')(session);
 import path from "path"
 import {indexRouter} from "./routers/indexRouter"
 import {loginRouter} from "./routers/loginRouter"
 import { logoutRouter } from "./routers/logoutRouter";
 import {signupRouter} from "./routers/signupRouter";
-import dotenv from "dotenv";
 import { reportRouter } from "./routers/reportRouter";
+import dotenv from "dotenv";
 dotenv.config();
 
 
@@ -20,6 +22,15 @@ app.use(express.static(path.join(process.env.PRIVATE_PATH, "js")));
 // app.use(express.static(path.join(process.env.PRIVATE_PATH,"css")));
 
 app.use(cookieParser());
+app.use(session({
+    secret: "secret key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+    },
+    store: new FileStore(),
+}))
 app.use(express.json());
 
 //라우터 등록
