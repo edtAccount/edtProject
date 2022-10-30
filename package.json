@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server" : "node ./dist/app.js",
     "webpack:start": "webpack serve --open",
+    "start": "node ./dist/app.js",
     "build:server": "tsc -p ./src/server/tsconfig.json",
     "build:c:pb": "tsc -p ./src/client/public/tsconfig.json",
     "build:c:pr": "tsc -p ./src/client/private/tsconfig.json",

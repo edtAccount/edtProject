@@ -1,15 +1,17 @@
 import { pool } from "./db"
 
 
-export async function findIncomeByMonth(month: string) {
+export async function findIncomeByMonth(userNum:number, month:string) {
     try {
         let conn = await pool.getConnection();
         try {
             let [result] = await conn.query(
                 `select options, sum(amount) as "optionAmount"
                 from income_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)
-                group by options`, [month]
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)
+                group by options`
+                , [userNum, month]
             )
             conn.release();
             return result;
@@ -25,14 +27,16 @@ export async function findIncomeByMonth(month: string) {
 }
 
 
-export async function findIncomeTotalByMonth(month: string) {
+export async function findIncomeTotalByMonth(userNum:number, month:string){
     try {
         let conn = await pool.getConnection();
         try {
             let [result] = await conn.query(
                 `select sum(amount) as "totalAmount"
                 from income_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)`, [month]
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)`
+                , [userNum, month]
             )
             conn.release();
             return result;
@@ -49,15 +53,17 @@ export async function findIncomeTotalByMonth(month: string) {
 
 
 
-export async function findExpenseByMonth(month: string) {
+export async function findExpenseByMonth(userNum:number, month:string) {
     try {
         let conn = await pool.getConnection();
         try {
             let [result] = await conn.query(
                 `select options, sum(amount) as "optionAmount"
                 from expense_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)
-                group by options`, [month]
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)
+                group by options`
+                , [userNum, month]
             )
             conn.release();
             return result;
@@ -73,14 +79,16 @@ export async function findExpenseByMonth(month: string) {
 }
 
 
-export async function findExpenseTotalByMonth(month: string) {
+export async function findExpenseTotalByMonth(userNum:number, month:string) {
     try {
         let conn = await pool.getConnection();
         try {
             let [result] = await conn.query(
                 `select sum(amount) as "totalAmount"
                 from expense_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)`, [month]
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)`
+                , [userNum, month]
             )
             conn.release();
             return result;

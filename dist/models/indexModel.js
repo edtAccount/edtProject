@@ -43,7 +43,8 @@ function findIncomes(userNum) {
             try {
                 let [result] = yield conn.query(`select *
             from income_tbl
-            where usernum = (?)`, [userNum]);
+            where usernum = (?)
+            order by actualDate`, [userNum]);
                 conn.release();
                 return result;
             }
@@ -142,7 +143,8 @@ function findExpenses(userNum) {
             try {
                 let [result] = yield conn.query(`select *
             from expense_tbl
-            where usernum = (?)`, [userNum]);
+            where usernum = (?)
+            order by actualDate`, [userNum]);
                 conn.release();
                 return result;
             }

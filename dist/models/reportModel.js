@@ -11,15 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findExpenseTotalByMonth = exports.findExpenseByMonth = exports.findIncomeTotalByMonth = exports.findIncomeByMonth = void 0;
 const db_1 = require("./db");
-function findIncomeByMonth(month) {
+function findIncomeByMonth(userNum, month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let conn = yield db_1.pool.getConnection();
             try {
                 let [result] = yield conn.query(`select options, sum(amount) as "optionAmount"
                 from income_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)
-                group by options`, [month]);
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)
+                group by options`, [userNum, month]);
                 conn.release();
                 return result;
             }
@@ -36,14 +37,15 @@ function findIncomeByMonth(month) {
     });
 }
 exports.findIncomeByMonth = findIncomeByMonth;
-function findIncomeTotalByMonth(month) {
+function findIncomeTotalByMonth(userNum, month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let conn = yield db_1.pool.getConnection();
             try {
                 let [result] = yield conn.query(`select sum(amount) as "totalAmount"
                 from income_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)`, [month]);
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)`, [userNum, month]);
                 conn.release();
                 return result;
             }
@@ -60,15 +62,16 @@ function findIncomeTotalByMonth(month) {
     });
 }
 exports.findIncomeTotalByMonth = findIncomeTotalByMonth;
-function findExpenseByMonth(month) {
+function findExpenseByMonth(userNum, month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let conn = yield db_1.pool.getConnection();
             try {
                 let [result] = yield conn.query(`select options, sum(amount) as "optionAmount"
                 from expense_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)
-                group by options`, [month]);
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)
+                group by options`, [userNum, month]);
                 conn.release();
                 return result;
             }
@@ -85,14 +88,15 @@ function findExpenseByMonth(month) {
     });
 }
 exports.findExpenseByMonth = findExpenseByMonth;
-function findExpenseTotalByMonth(month) {
+function findExpenseTotalByMonth(userNum, month) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let conn = yield db_1.pool.getConnection();
             try {
                 let [result] = yield conn.query(`select sum(amount) as "totalAmount"
                 from expense_tbl
-                where DATE_FORMAT(insert_date, "%m") = (?)`, [month]);
+                where usernum = ? 
+                and DATE_FORMAT(insert_date, "%m") = (?)`, [userNum, month]);
                 conn.release();
                 return result;
             }

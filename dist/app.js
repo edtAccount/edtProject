@@ -28,11 +28,6 @@ app.use(loginRouter_1.loginRouter);
 app.use(logoutRouter_1.logoutRouter);
 app.use(signupRouter_1.signupRouter);
 app.use(reportRouter_1.reportRouter);
-//테스트 코드
-// app.get("/report", (req:Request,res:Response)=>{
-//         const filename = req.url.split("/")[1]
-//         res.sendFile(path.join(__dirname,'..','public',filename+".html"))
-// })
 app.listen(3000, () => {
     console.log("listening to 3000");
 });

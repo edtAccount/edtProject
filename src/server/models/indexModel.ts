@@ -38,7 +38,8 @@ export async function findIncomes(userNum: number) {
       let [result] = await conn.query(
         `select *
             from income_tbl
-            where usernum = (?)`,
+            where usernum = (?)
+            order by actualDate`,
         [userNum]
       );
       conn.release()
@@ -133,7 +134,8 @@ export async function findExpenses(userNum: number) {
       let [result] = await conn.query(
         `select *
             from expense_tbl
-            where usernum = (?)`,
+            where usernum = (?)
+            order by actualDate`,
         [userNum]
       );
       conn.release()
