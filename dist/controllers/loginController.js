@@ -41,7 +41,7 @@ const loginModel_1 = require("../models/loginModel");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 function login(request, response) {
-    var _a, _b, _c, _d;
+    var _a, _b;
     return __awaiter(this, void 0, void 0, function* () {
         let result = yield (0, loginModel_1.selectUser)((_a = request.body) === null || _a === void 0 ? void 0 : _a.username, (_b = request.body) === null || _b === void 0 ? void 0 : _b.userpwd);
         console.log(result);
@@ -52,19 +52,21 @@ function login(request, response) {
         else {
             // 세션 사용!!!
             request.session.user = {
-                name: (_c = request.body) === null || _c === void 0 ? void 0 : _c.username,
-                password: bcrypt.hashSync((_d = request.body) === null || _d === void 0 ? void 0 : _d.userpwd, 10),
+                name: request.body.username,
+                password: bcrypt.hashSync(request.body.userpwd, 10),
                 authorized: true,
             };
             // 쿠키 사용!!
             // response.cookie("username", request.body?.username, {
             //     maxAge:60*60*24,
             // });
-            response.cookie("id", result[0].id, {
-                maxAge: 60 * 60 * 24,
+            return request.session.save(() => {
+                response.cookie("id", result[0].id, {
+                    maxAge: 60 * 60 * 24,
+                });
+                response.redirect(302, "http://localhost:3000/");
+                response.end();
             });
-            response.redirect(302, "http://localhost:3000/");
-            response.end();
         }
     });
 }

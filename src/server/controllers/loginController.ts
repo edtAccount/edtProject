@@ -18,8 +18,8 @@ export async function login(request:Request, response:Response){
 
         // 세션 사용!!!
         request.session.user = {
-            name : request.body?.username,
-            password : bcrypt.hashSync(request.body?.userpwd, 10),
+            name : request.body.username,
+            password : bcrypt.hashSync(request.body.userpwd, 10),
             authorized: true,
         };
 
@@ -28,13 +28,15 @@ export async function login(request:Request, response:Response){
         //     maxAge:60*60*24,
         // });
 
-        response.cookie("id", result[0].id, {
-            maxAge:60*60*24,
+        return request.session.save(() => {
+            response.cookie("id", result[0].id, {
+                maxAge:60*60*24,
+            });
+        
+            response.redirect(302, "http://localhost:3000/");
+        
+            response.end();
         });
- 
-        response.redirect(302, "http://localhost:3000/");
-    
-        response.end();
     }
 
 }
