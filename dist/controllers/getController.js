@@ -16,10 +16,12 @@ function getPublicFileResource(request, response) {
 }
 exports.getPublicFileResource = getPublicFileResource;
 function getPrivateFileResource(request, response) {
+    console.log(request.method);
     let extension = ".html";
     let fileName = "";
-    if (request.url == "/")
+    if (request.url == "/" || request.method == "PUT")
         fileName = "index";
+    console.log(process.env.PRIVATE_PATH + request.url + fileName + extension);
     response.end(fs_1.default.readFileSync(process.env.PRIVATE_PATH + request.url + fileName + extension));
 }
 exports.getPrivateFileResource = getPrivateFileResource;

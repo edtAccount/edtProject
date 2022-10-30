@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeExpense = exports.modifyExpense = exports.findExpenses = exports.addExpense = exports.removeIncome = exports.modifyIncome = exports.findIncomes = exports.addIncome = void 0;
+exports.removeExpense = exports.modifyExpense = exports.findExpensesByDate = exports.findExpenses = exports.addExpense = exports.removeIncome = exports.modifyIncome = exports.findIncomesByDate = exports.findIncomes = exports.addIncome = void 0;
 const db_1 = require("./db");
 function addIncome(incomeInfo) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -24,11 +24,11 @@ function addIncome(incomeInfo) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
@@ -41,20 +41,44 @@ function findIncomes(userNum) {
                 conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select *
             from income_tbl
-            where usernum = (?)`, [userNum]);
+            where usernum = (?)
+            order by actualDate`, [userNum]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
 exports.findIncomes = findIncomes;
+function findIncomesByDate(userNum, actualDate) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let conn = null;
+            try {
+                conn = yield db_1.pool.getConnection();
+                let [result] = yield conn.query(`select *
+          from income_tbl
+          where usernum = (?)
+          and DATE_FORMAT(actualDate, '%Y-%m-%d') = (?)`, [userNum, actualDate]);
+                conn.release();
+                return result;
+            }
+            catch (err) {
+                throw err;
+            }
+        }
+        catch (err) {
+            throw err;
+        }
+    });
+}
+exports.findIncomesByDate = findIncomesByDate;
 function modifyIncome(incomeId, updateInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -73,11 +97,11 @@ function modifyIncome(incomeId, updateInfo) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
@@ -93,11 +117,11 @@ function removeIncome(incomeId) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
@@ -115,11 +139,11 @@ function addExpense(expenseInfo) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
@@ -132,20 +156,44 @@ function findExpenses(userNum) {
                 conn = yield db_1.pool.getConnection();
                 let [result] = yield conn.query(`select *
             from expense_tbl
-            where usernum = (?)`, [userNum]);
+            where usernum = (?)
+            order by actualDate`, [userNum]);
                 conn.release();
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
 exports.findExpenses = findExpenses;
+function findExpensesByDate(userNum, actualDate) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let conn = null;
+            try {
+                conn = yield db_1.pool.getConnection();
+                let [result] = yield conn.query(`select *
+          from expense_tbl
+          where usernum = (?)
+          and DATE_FORMAT(actualDate, '%Y-%m-%d') = (?)`, [userNum, actualDate]);
+                conn.release();
+                return result;
+            }
+            catch (err) {
+                throw err;
+            }
+        }
+        catch (err) {
+            throw err;
+        }
+    });
+}
+exports.findExpensesByDate = findExpensesByDate;
 function modifyExpense(expenseId, updateInfo) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -164,11 +212,11 @@ function modifyExpense(expenseId, updateInfo) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
@@ -184,11 +232,11 @@ function removeExpense(expenseId) {
                 return result;
             }
             catch (err) {
-                console.log(err);
+                throw err;
             }
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     });
 }

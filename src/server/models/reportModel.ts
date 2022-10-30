@@ -17,10 +17,10 @@ export async function findIncomeByMonth(userNum:number, month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
     } catch (err) {
-        console.log(err)
+        throw err
     }
 }
 
@@ -40,10 +40,10 @@ export async function findIncomeTotalByMonth(userNum:number, month:string){
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
     } catch (err) {
-        console.log(err)
+        throw err
     }
 }
 
@@ -65,10 +65,10 @@ export async function findExpenseByMonth(userNum:number, month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
     } catch (err) {
-        console.log(err)
+        throw err
     }
 }
 
@@ -88,10 +88,10 @@ export async function findExpenseTotalByMonth(userNum:number, month:string) {
             conn.release();
             return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
     } catch (err) {
-        console.log(err)
+        throw err
     }
 }
 

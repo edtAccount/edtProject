@@ -65,12 +65,12 @@ function getIncomeTotal(month) {
         });
     });
 }
+//카테고리별 소비금액
 function getExpenseReport(month) {
     return __awaiter(this, void 0, void 0, function* () {
         expenseReport.innerHTML = "";
         const response = yield fetch(`api/report/expense/${month}`);
         const datas = yield response.json();
-        //카테고리별 소비금액
         datas.forEach((data) => {
             expenseReport.append(createOptionElement(data));
         });
@@ -87,6 +87,19 @@ function getExpenseTotal(month) {
         });
     });
 }
+//총 자산
+function getTotalAccount(month) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const resExpense = yield fetch(`api/report/expenseTotal/${month}`);
+        const resIncome = yield fetch(`api/report/incomeTotal/${month}`);
+        const totalExpense = yield resExpense.json();
+        const totalIncome = yield resIncome.json();
+        const result = Number(totalIncome[0].totalAmount) - Number(totalExpense[0].totalAmount);
+        const totalAccount = document.getElementById("total-account");
+        totalAccount.textContent = result.toLocaleString();
+    });
+}
 //매개변수로 날짜 섹션에서 가져온 month 파라미터 입력 : 기본값 - 이번달
 getIncomeReport(selectedMonth);
 getExpenseReport(selectedMonth);
+getTotalAccount(selectedMonth);

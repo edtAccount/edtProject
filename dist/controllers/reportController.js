@@ -44,7 +44,8 @@ function getIncomeByMonth(req, res) {
             res.send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -59,7 +60,8 @@ function getIncomeTotalByMonth(req, res) {
             res.send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -74,7 +76,8 @@ function getExpenseByMonth(req, res) {
             res.send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -89,7 +92,8 @@ function getExpenseTotalByMonth(req, res) {
             res.send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }

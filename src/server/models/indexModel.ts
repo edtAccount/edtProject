@@ -8,6 +8,7 @@ export interface AccountInfo {
     actualDate: Date | null;
 }
 
+
 export async function addIncome(incomeInfo:AccountInfo) {
   try {
     const {userNum, options, amount, content, actualDate} = incomeInfo
@@ -22,10 +23,10 @@ export async function addIncome(incomeInfo:AccountInfo) {
       conn.release()
       return result;
     } catch (err) {
-        console.log(err)
+        throw err
     }
   } catch (err) {
-    console.log(err)
+    throw err
   }
 }
 
@@ -37,20 +38,43 @@ export async function findIncomes(userNum:number) {
           let [result] = await conn.query(
             `select *
             from income_tbl
-            where usernum = (?)`,
+            where usernum = (?)
+            order by actualDate`,
             [userNum]
           );
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 
-export async function modifyIncome(incomeId:number, updateInfo: Omit<Partial<AccountInfo>,'userNum'>) {
+export async function findIncomesByDate(userNum:number, actualDate:string) {
+  try {
+      let conn = null;
+      try {
+        conn = await pool.getConnection();
+        let [result] = await conn.query(
+          `select *
+          from income_tbl
+          where usernum = (?)
+          and DATE_FORMAT(actualDate, '%Y-%m-%d') = (?)`,
+          [userNum, actualDate]
+        );
+        conn.release()
+        return result;
+      } catch (err) {
+          throw err
+      }
+    } catch (err) {
+      throw err
+    }
+}
+
+export async function modifyIncome(incomeId:number, updateInfo: Partial<AccountInfo>) {
     try {
         let conn = null;
         try {
@@ -69,10 +93,10 @@ export async function modifyIncome(incomeId:number, updateInfo: Omit<Partial<Acc
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 
@@ -88,10 +112,10 @@ export async function removeIncome(incomeId:number) {
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 
@@ -109,10 +133,10 @@ export async function addExpense(expenseInfo:AccountInfo) {
       conn.release()
       return result;
     } catch (err) {
-        console.log(err)
+        throw err
     }
   } catch (err) {
-    console.log(err)
+    throw err
   }
 }
 
@@ -124,20 +148,44 @@ export async function findExpenses(userNum:number) {
           let [result] = await conn.query(
             `select *
             from expense_tbl
-            where usernum = (?)`,
+            where usernum = (?)
+            order by actualDate`,
             [userNum]
           );
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 
-export async function modifyExpense(expenseId:number, updateInfo: Omit<Partial<AccountInfo>,'userNum'>) {
+export async function findExpensesByDate(userNum:number, actualDate:string) {
+  try {
+      let conn = null;
+      try {
+        conn = await pool.getConnection();
+        let [result] = await conn.query(
+          `select *
+          from expense_tbl
+          where usernum = (?)
+          and DATE_FORMAT(actualDate, '%Y-%m-%d') = (?)`,
+          [userNum, actualDate]
+        );
+        conn.release()
+        return result;
+      } catch (err) {
+          throw err
+      }
+    } catch (err) {
+      throw err
+    }
+}
+
+
+export async function modifyExpense(expenseId:number, updateInfo: Partial<AccountInfo>) {
     try {
         let conn = null;
         try {
@@ -155,10 +203,10 @@ export async function modifyExpense(expenseId:number, updateInfo: Omit<Partial<A
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 
@@ -174,10 +222,10 @@ export async function removeExpense(expenseId:number) {
           conn.release()
           return result;
         } catch (err) {
-            console.log(err)
+            throw err
         }
       } catch (err) {
-        console.log(err)
+        throw err
       }
 }
 

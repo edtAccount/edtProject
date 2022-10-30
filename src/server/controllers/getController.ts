@@ -11,8 +11,10 @@ export function getPublicFileResource(request:Request, response:Response){
 }
 
 export function getPrivateFileResource(request:Request, response:Response){
+    console.log(request.method)
     let extension = ".html";
     let fileName = ""
-    if(request.url == "/") fileName = "index";
+    if(request.url == "/" || request.method == "PUT") fileName = "index";
+    console.log(process.env.PRIVATE_PATH + request.url + fileName + extension)
     response.end(fs.readFileSync(process.env.PRIVATE_PATH + request.url + fileName + extension))
 }

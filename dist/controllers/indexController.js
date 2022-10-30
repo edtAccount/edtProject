@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteExpense = exports.updateExpense = exports.getExpenses = exports.createExpense = exports.deleteIncome = exports.updateIncome = exports.getIncomes = exports.createIncome = void 0;
+exports.deleteExpense = exports.updateExpense = exports.getExpensesByDate = exports.getExpenses = exports.createExpense = exports.deleteIncome = exports.updateIncome = exports.getIncomesByDate = exports.getIncomes = exports.createIncome = void 0;
 const indexModel = __importStar(require("../models/indexModel"));
 /**
  *
@@ -60,7 +60,8 @@ function createIncome(req, res) {
             res.status(201).send(createdIncome);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -75,11 +76,29 @@ function getIncomes(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
 exports.getIncomes = getIncomes;
+function getIncomesByDate(req, res) {
+    var _a;
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            //user식별값
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const actualDate = req.params.actualDate;
+            const data = yield indexModel.findIncomes(userNum, actualDate); //userNum으로 찾은 소득 리스트
+            res.status(200).send(data);
+        }
+        catch (err) {
+            if (err instanceof Error)
+                res.status(404).send(err.message);
+        }
+    });
+}
+exports.getIncomesByDate = getIncomesByDate;
 function updateIncome(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -102,7 +121,8 @@ function updateIncome(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -122,7 +142,8 @@ function deleteIncome(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -153,7 +174,8 @@ function createExpense(req, res) {
             res.status(201).send(createdExpense);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -168,11 +190,29 @@ function getExpenses(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
 exports.getExpenses = getExpenses;
+function getExpensesByDate(req, res) {
+    var _a;
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            //user식별값
+            const userNum = Number((_a = req.cookies) === null || _a === void 0 ? void 0 : _a.id);
+            const actualDate = req.params.actualDate;
+            const data = yield indexModel.findExpenses(userNum, actualDate); //userNum으로 찾은 소득 리스트
+            res.status(200).send(data);
+        }
+        catch (err) {
+            if (err instanceof Error)
+                res.status(404).send(err.message);
+        }
+    });
+}
+exports.getExpensesByDate = getExpensesByDate;
 function updateExpense(req, res) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -195,7 +235,8 @@ function updateExpense(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }
@@ -215,7 +256,8 @@ function deleteExpense(req, res) {
             res.status(200).send(data);
         }
         catch (err) {
-            console.log(err);
+            if (err instanceof Error)
+                res.status(404).send(err.message);
         }
     });
 }

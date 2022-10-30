@@ -95,9 +95,7 @@
             transform: scale(1.05);
             font-weight: bold;
         }
-        /* #mypage-menu-container{}
-        #breadown-menu-container{}
-        #report-menu-container{} */
+
         /* <!-- ------------------middle area---------------- --> */
         #middle-area{
             display:  flex;
@@ -155,9 +153,7 @@
             background-color: rgba(255, 255, 255, 0.812);
             border-radius: 10px;
         }
-        /* #total{} */
-        /* #income{} */
-        /* #expense{} */
+
         #date-container{
             display: flex;
             justify-content: center;
@@ -168,16 +164,7 @@
 
             /* border: 2px solid red; */
         }
-        #prev-month{
-            color: rgb(255, 255, 255);
-            background-color: rgb(255, 217, 0);
-            border-radius: 50%;
-            border: 0px;
-            transition: 0.2s;
-        }
-        #prev-month:active{
-            transform: scale(1.1);
-        }
+
         #date-input{
             font-weight: bold;
             border: 0px;
@@ -185,16 +172,7 @@
             box-shadow: 0 0 5px 1px rgba(248, 192, 9, 0.747);
             background-color: rgba(255, 255, 255, 0.59);
         }
-        #next-month{
-            color: white;
-            background-color: rgb(255, 217, 0);
-            border-radius: 50%;
-            border: 0px;
-            transition: 0.2s;
-        }
-        #next-month:active{
-            transform: scale(1.1);
-        }
+
         #breakdown-container{
             display: flex;
             flex-direction: column;
@@ -206,23 +184,30 @@
             overflow: scroll;
             background-color: rgba(255, 255, 255, 0.46);
             /* box-shadow: 0 0 5px 1px rgba(194, 194, 194, 0.747); */
-            border-radius: 15px;
+            /* border-radius: 15px; */
         }
         #breakdown-container::-webkit-scrollbar{
             display: none;
         }
-        .breakdown{
+        .breakdown {
             margin-top:  20px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-collapse: collapse;
-            width: 80%;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 0 5px 1px rgba(248, 192, 9, 0.747);
-            background-color: white;
+            width: 100%;
+            /* border-radius: 0 0 10px 10px; */
+            box-shadow: 0 0 5px 1px rgba(237, 237, 236, 0.993);
+            
             transition: 0.2s;
         }
+        .expense-breakdown{
+            background-color: salmon;
+        }
+        .income-breakdown{
+            background-color:lightskyblue;
+        }
+
         .breakdown:hover{
             transform: scale(1.07);
         }
@@ -230,25 +215,25 @@
             width: 100%;
             height: 100%;
         }
-        /* .breakdown tr{
+        .breakdown tr{
             width: 100%;
-        } */
+        }
         .breakdown th{
             /* width: 100px; */
-            border-bottom: 1px solid rgb(255, 217, 0);
-            background-color: rgba(255, 217, 0, 0.753);
-            border-right: 1px solid rgb(255, 217, 0);
+            border-bottom: 1px solid rgb(82, 82, 82);
+            background-color: rgba(239, 239, 239, 0.753);
+            border-right: 1px solid rgb(92, 92, 92);
             /* //word-break:break-all;  */
-            width: 25%;
+            width: 30%;
         }
         .breakdown td{
             text-align: center;
             font-size: 12px;
-            border-right: 1px solid rgb(255, 217, 0);
+            border-right: 1px solid rgb(91, 91, 91);
             /* //word-break:keep-all;  */
-            width: 25%;
+            width: 30%;
         }
-        #table-header{
+        /* #table-header{
             width : 100%;
             background-color: rgba(255, 217, 0, 0.753);
         }
@@ -260,7 +245,7 @@
             border-right: 1px solid rgb(255, 217, 0);
             word-break:break-all; 
             width: 30%;
-        }
+        } */
         /* .header-form{
             border-right: 1px solid rgb(255, 217, 0);
             word-break:break-all; 
@@ -368,7 +353,7 @@
             <div id="title-container">
                 <p id="title">내역</p>
             </div>
-            <div id="status-container">
+            <!-- <div id="status-container">
                 <div id="total-container" class="status">
                     Total
                     <p id="total" class="status-detail">100,000,000원</p>
@@ -381,11 +366,9 @@
                     Expense
                     <p id="expense" class="status-detail">100,000원</p>
                 </div>
-            </div>
+            </div> -->
             <div id="date-container">
-                <button id="prev-month"><</button>
                 <input type="date" id="date-input">
-                <button id="next-month">></button>
             </div>
             <div id="breakdown-container">
 
@@ -403,7 +386,6 @@
                         <td >200,000원</td>
                     </tr>
                 </table> -->
-
             </div>
             <div id="plus-menu-container">
                 <div id="plus-menu-btn" value="false"></div>
@@ -468,10 +450,11 @@
             </div>
         
         </div>
+
         
         <!-- ------------------------------------------- -->
         <!-- ------------------------------------------- -->
     </div>
 </body>
-<script src="./index.js"></script>
+<script type="module" src="./index.js"></script>
 </html>

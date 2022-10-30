@@ -8,7 +8,8 @@ export async function getIncomeByMonth(req:Request, res:Response){
         const data = await reportModel.findIncomeByMonth(userNum,month)
         res.send(data)
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -19,7 +20,8 @@ export async function getIncomeTotalByMonth(req:Request, res:Response){
         const data = await reportModel.findIncomeTotalByMonth(userNum,month)
         res.send(data)
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -30,7 +32,8 @@ export async function getExpenseByMonth(req:Request, res:Response){
         const data = await reportModel.findExpenseByMonth(userNum,month)
         res.send(data)
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -41,6 +44,7 @@ export async function getExpenseTotalByMonth(req:Request, res:Response){
         const data = await reportModel.findExpenseTotalByMonth(userNum,month)
         res.send(data)
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }

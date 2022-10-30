@@ -7,13 +7,11 @@
 </head>
 <link rel="stylesheet" href="./report.css">
 <body> 
-    <header>
+    <header >
         <div id="monthDiv">
             <span>월 보고서</span>
             <label for="year">YEAR:</label>
             <select id="year" name="report_year">
-                <!-- <option value="2020">2020</option>
-                <option value="2021">2021</option> -->
                 <option value="2022" selected>2022</option>
             </select>
             <label for="month">MONTH:</label>
@@ -31,6 +29,10 @@
                       <option value="nov">11</option>
                       <option value="dec">12</option>
                   </select>
+        </div>
+        <div id="accountDiv">
+            <span>총 자산</span>
+            <div class="report-box block" id="total-account"></div>
         </div>
     
     </header>

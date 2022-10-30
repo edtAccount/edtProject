@@ -13,7 +13,7 @@ export async function createIncome(req:Request, res:Response){
             return;
         }   
         //user식별값
-        const userNum = Number(req.cookies?.id)
+        const userNum = Number(req.cookies?.id) 
         const {options, amount, content, actualDate} = req.body
         const body = {
             "userNum": userNum,
@@ -25,7 +25,8 @@ export async function createIncome(req:Request, res:Response){
         const createdIncome = await indexModel.addIncome(body) //
         res.status(201).send(createdIncome)  
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 
 }
@@ -33,11 +34,25 @@ export async function createIncome(req:Request, res:Response){
 export async function getIncomes(req:Request, res:Response){
     try {
         //user식별값
-        const userNum = Number(req.cookies?.id)
+        const userNum = Number(req.cookies?.id) 
         const data = await indexModel.findIncomes(userNum)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
+    }
+}
+
+export async function getIncomesByDate(req:Request, res:Response){
+    try {
+        //user식별값
+        const userNum = Number(req.cookies?.id) 
+        const actualDate = req.params.actualDate
+        const data = await indexModel.findIncomes(userNum, actualDate)//userNum으로 찾은 소득 리스트
+        res.status(200).send(data) 
+    } catch (err) {
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -60,7 +75,8 @@ export async function updateIncome(req:Request, res:Response){
         const data = await indexModel.modifyIncome(incomeId, updateInfo)
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 
 }
@@ -77,7 +93,8 @@ export async function deleteIncome(req:Request, res:Response){
         const data = await indexModel.removeIncome(incomeId)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -104,7 +121,8 @@ export async function createExpense(req:Request, res:Response){
         const createdExpense = await indexModel.addExpense(body) //
         res.status(201).send(createdExpense)  
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -115,7 +133,21 @@ export async function getExpenses(req:Request, res:Response){
         const data = await indexModel.findExpenses(userNum)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
+    }
+}
+
+export async function getExpensesByDate(req:Request, res:Response){
+    try {
+        //user식별값
+        const userNum = Number(req.cookies?.id)
+        const actualDate = req.params.actualDate
+        const data = await indexModel.findExpenses(userNum, actualDate)//userNum으로 찾은 소득 리스트
+        res.status(200).send(data) 
+    } catch (err) {
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -138,7 +170,8 @@ export async function updateExpense(req:Request, res:Response){
         const data = await indexModel.modifyExpense(expenseId, updateInfo)
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }
 
@@ -154,6 +187,7 @@ export async function deleteExpense(req:Request, res:Response){
         const data = await indexModel.removeExpense(expenseId)//userNum으로 찾은 소득 리스트
         res.status(200).send(data) 
     } catch (err) {
-        console.log(err)
+        if(err instanceof Error)
+        res.status(404).send(err.message)
     }
 }

@@ -23,15 +23,11 @@ app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 //라우터 등록
-<<<<<<< HEAD
-app.use("/api", router_1.router);
-=======
 app.use(indexRouter_1.indexRouter);
 app.use(loginRouter_1.loginRouter);
 app.use(logoutRouter_1.logoutRouter);
 app.use(signupRouter_1.signupRouter);
 app.use(reportRouter_1.reportRouter);
->>>>>>> 7ffb93b20188345a42373fd5f6e55e69b1607f9d
 app.listen(3000, () => {
     console.log("listening to 3000");
 });

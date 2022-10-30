@@ -84,11 +84,12 @@ async function getIncomeTotal(month:string){
     });
 }
 
+//카테고리별 소비금액
 async function getExpenseReport(month:string){
     expenseReport.innerHTML=""
     const response = await fetch(`api/report/expense/${month}`)
     const datas = await response.json()
-    //카테고리별 소비금액
+    
     datas.forEach((data: OptionData) => {
         expenseReport.append(createOptionElement(data))
     });
@@ -104,9 +105,22 @@ async function getExpenseTotal(month:string){
     });
 }
 
+//총 자산
+async function getTotalAccount(month:string){
+    const resExpense = await fetch(`api/report/expenseTotal/${month}`)
+    const resIncome = await fetch(`api/report/incomeTotal/${month}`)
+    const totalExpense = await resExpense.json()
+    const totalIncome = await resIncome.json()
+
+    const result = Number(totalIncome[0].totalAmount) - Number(totalExpense[0].totalAmount)
+    const totalAccount = document.getElementById("total-account")
+    totalAccount.textContent = result.toLocaleString()
+} 
+
 
 //매개변수로 날짜 섹션에서 가져온 month 파라미터 입력 : 기본값 - 이번달
 getIncomeReport(selectedMonth)
 getExpenseReport(selectedMonth)
+getTotalAccount(selectedMonth)
 
 
