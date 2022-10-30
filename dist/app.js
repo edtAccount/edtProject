@@ -16,12 +16,8 @@ const reportRouter_1 = require("./routers/reportRouter");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
 app.use(express_1.default.static(path_1.default.join(process.env.PUBLIC_PATH, "js")));
-// app.use(express.static(path.join(process.env.PUBLIC_PATH,"css")));
-// app.use(express.static(path.join(process.env.PRIVATE_PATH,"img")));
 app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "js")));
-// app.use(express.static(path.join(process.env.PRIVATE_PATH,"css")));
 app.use((0, cookie_parser_1.default)());
 app.use((0, express_session_1.default)({
     secret: "secret key",
@@ -40,9 +36,7 @@ app.use(logoutRouter_1.logoutRouter);
 app.use(signupRouter_1.signupRouter);
 app.use(reportRouter_1.reportRouter);
 app.use((req, res) => {
-    const err = new Error();
-    err.message = "잘못된 접근입니다.";
-    res.status(400).send(err);
+    res.status(400).send("잘못된 접근입니다.");
 });
 app.listen(3000, () => {
     console.log("listening to 3000");

@@ -30,6 +30,5 @@ const getController = __importStar(require("../controllers/getController"));
 const validations_1 = require("../middleware/validations");
 const signupRouter = (0, express_1.Router)();
 exports.signupRouter = signupRouter;
-// signupRouter.use(publicPageValidate)
 signupRouter.post("/api/signup", signupController.signup);
 signupRouter.get("/signup", validations_1.publicPageValidate, getController.getPublicFileResource);

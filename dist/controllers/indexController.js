@@ -43,7 +43,7 @@ function createIncome(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.body) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값
@@ -72,7 +72,8 @@ function getIncomes(req, res) {
         try {
             //user식별값
             const userNum = Number((_a = req.session) === null || _a === void 0 ? void 0 : _a.user.id);
-            const data = yield indexModel.findIncomes(userNum); //userNum으로 찾은 소득 리스트
+            const date = req.query.date || null;
+            const data = yield indexModel.findIncomes(userNum, date); //userNum으로 찾은 소득 리스트
             res.status(200).send(data);
         }
         catch (err) {
@@ -104,7 +105,7 @@ function updateIncome(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값
@@ -132,7 +133,7 @@ function deleteIncome(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값
@@ -157,7 +158,7 @@ function createExpense(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.body) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값
@@ -218,7 +219,7 @@ function updateExpense(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값
@@ -246,7 +247,7 @@ function deleteExpense(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!req.params) {
-                res.sendStatus(400).send("값을 찾을 수 없습니다");
+                res.sendStatus(404).send("값을 찾을 수 없습니다");
                 return;
             }
             //user식별값

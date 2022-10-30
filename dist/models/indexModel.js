@@ -36,12 +36,19 @@ function addIncome(incomeInfo) {
     });
 }
 exports.addIncome = addIncome;
-function findIncomes(userNum) {
+function findIncomes(userNum, date) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let conn = yield db_1.pool.getConnection();
             try {
-                let [result] = yield conn.query(`select *
+                let [result] = (date !== null) ?
+                    yield conn.query(`select *
+            from income_tbl
+            where usernum = (?)
+            and DATE_FORMAT(actualDate, "%Y-%m-%d") = (?)
+            order by actualDate`, [userNum, date])
+                    :
+                        yield conn.query(`select *
             from income_tbl
             where usernum = (?)
             order by actualDate`, [userNum]);
