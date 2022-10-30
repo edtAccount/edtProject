@@ -13,12 +13,8 @@ dotenv.config();
 
 const app = express();
 
-// app.use(express.static(path.join(process.env.PUBLIC_PATH ,"img")));
 app.use(express.static(path.join(process.env.PUBLIC_PATH, "js")));
-// app.use(express.static(path.join(process.env.PUBLIC_PATH,"css")));
-// app.use(express.static(path.join(process.env.PRIVATE_PATH,"img")));
 app.use(express.static(path.join(process.env.PRIVATE_PATH, "js")));
-// app.use(express.static(path.join(process.env.PRIVATE_PATH,"css")));
 
 app.use(cookieParser());
 app.use(session({
