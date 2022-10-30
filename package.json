@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:server" : "node ./dist/app.js",
+    "start:server": "node ./dist/app.js",
     "webpack:start": "webpack serve --open",
     "build:server": "tsc -p ./src/server/tsconfig.json",
     "build:c:pb": "tsc -p ./src/client/public/tsconfig.json",
