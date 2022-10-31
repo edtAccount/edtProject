@@ -35,16 +35,7 @@ export async function findIncomes(userNum: number, date: string) {
   try {
     let conn = await pool.getConnection();
     try {
-      let [result] = (date !== null) ? 
-      await conn.query(
-        `select *
-            from income_tbl
-            where usernum = (?)
-            and DATE_FORMAT(actualDate, "%Y-%m-%d") = (?)
-            order by actualDate`,
-        [userNum, date]
-      )
-      :
+      let [result] =
      await conn.query(
         `select *
             from income_tbl

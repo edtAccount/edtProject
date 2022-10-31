@@ -2,6 +2,8 @@ import {Router} from "express"
 import * as getController from "../controllers/getController";
 import { privatePageValidate } from "../middleware/validations";
 import * as indexController from "../controllers/indexController";
+
+import fs from "fs"
 const indexRouter = Router();
 
 indexRouter.get("/", privatePageValidate, getController.getPrivateFileResource);
@@ -26,3 +28,9 @@ indexRouter.delete("/api/expense/:expenseId", indexController.deleteExpense)
 
 
 export {indexRouter}
+
+// //동적 라우팅
+// const routerFiles = fs.readdirSync("./router")
+// routerFiles.forEach(async(file)=>{
+//     const {default : _router}
+// })

@@ -41,3 +41,8 @@ indexRouter.post("/api/expense", indexController.createExpense);
 indexRouter.get("/api/expenses", indexController.getExpenses);
 indexRouter.put("/api/expense/:expenseId", indexController.updateExpense);
 indexRouter.delete("/api/expense/:expenseId", indexController.deleteExpense);
+// //동적 라우팅
+// const routerFiles = fs.readdirSync("./router")
+// routerFiles.forEach(async(file)=>{
+//     const {default : _router}
+// })

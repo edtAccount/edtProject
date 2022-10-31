@@ -12,9 +12,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-
 app.use(express.static(path.join(process.env.PUBLIC_PATH, "js")));
 app.use(express.static(path.join(process.env.PRIVATE_PATH, "js")));
+app.use(express.static("private"));
+app.use(express.static("public"));
 
 app.use(cookieParser());
 app.use(session({

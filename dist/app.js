@@ -18,6 +18,8 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.static(path_1.default.join(process.env.PUBLIC_PATH, "js")));
 app.use(express_1.default.static(path_1.default.join(process.env.PRIVATE_PATH, "js")));
+app.use(express_1.default.static("private"));
+app.use(express_1.default.static("public"));
 app.use((0, cookie_parser_1.default)());
 app.use((0, express_session_1.default)({
     secret: "secret key",
