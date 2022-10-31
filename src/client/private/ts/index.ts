@@ -21,10 +21,10 @@ const contentInputEl = document.getElementById("content") as HTMLInputElement
 const submitBtn = document.querySelector(".submit-btn") as HTMLButtonElement
 
 //메인 내역 element
-const dateInputEl= document.getElementById("date-input") as HTMLInputElement
+// const dateInputEl= document.getElementById("date-input") as HTMLInputElement
 
 interface AccountInfo {
-    id: string | null;
+    ID: string | null;
     userNum: number | null;
     amount: number | null;
     options: string | null;
@@ -38,7 +38,7 @@ logoutBtn?.addEventListener("click", clickLogoutBtnHandler);
 
 //메인
 document.addEventListener("DOMContentLoaded", async ()=>{
-    initDate()
+    // initDate()
     //initInputType() 
     await submitAccountForm()
 })
@@ -142,10 +142,10 @@ export const breakdownIncomeEl = document.querySelector("#breakdown-income")
 export const breakdownExpenseEl = document.querySelector("#breakdown-expense")
 
 
-function initDate() {
+// function initDate() {
     
-    dateInputEl.value = new Date().toISOString().substring(0, 10);
-}
+//     // dateInputEl.value = new Date().toISOString().substring(0, 10);
+// }
 
 function stringToDate(date:Date){
     const targetDate = new Date(date);
@@ -167,7 +167,7 @@ async function initAccount(){
 
 async function presentAccountElByType(type: string){
     const tableAccount = document.createElement("div")
-    console.log(dateInputEl.value)
+    // console.log(dateInputEl.value)
     let result = await fetch(`api/${type}s`)
     //let result = await fetch(`api/${type}s?${dateInputEl.value}`)
     let datas = await result.json()
@@ -190,7 +190,7 @@ function createAccountEl(type:string, data: AccountInfo) {
 
     //테이블 header
     const tableBodyEl = document.createElement("tbody")
-    tableEl.setAttribute('id', data.id)
+    tableEl.setAttribute('id', data.ID)
     const tableHeaderEl = document.createElement("tr")
     const tableHeaderDateEl = document.createElement("th")
     tableHeaderDateEl.textContent = "날짜"
@@ -241,9 +241,9 @@ function createAccountEl(type:string, data: AccountInfo) {
 
 
 
-dateInputEl.addEventListener("change", async() => {
-    console.log(dateInputEl.value)
-    const actualDate = dateInputEl.value
-    let result = await fetch(`api/incomes/${actualDate}`)
+// dateInputEl.addEventListener("change", async() => {
+//     console.log(dateInputEl.value)
+//     const actualDate = dateInputEl.value
+//     let result = await fetch(`api/incomes/${actualDate}`)
 
-})
+// })
